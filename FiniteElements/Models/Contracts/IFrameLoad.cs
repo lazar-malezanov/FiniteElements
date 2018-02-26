@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace FiniteElements.Models.Contracts
 {
     internal interface IFrameLoad : ILoad
-    {
-        Vector<double> LocalVector { get; }        
-
+    {        
         double ElementLength { get; set; }
     }
 }

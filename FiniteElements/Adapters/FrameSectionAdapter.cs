@@ -10,6 +10,7 @@ namespace FiniteElements.Adapters
         private double mju;
         private double momentOfInertiaY;
         private double momentOfInertiaZ;
+        private double torsionalConstantX;
         private string name;
         private double number;
         private string type;
@@ -22,6 +23,7 @@ namespace FiniteElements.Adapters
             this.mju = sectionFromLibrary.Mju;
             this.momentOfInertiaY = sectionFromLibrary.MomentOfInertiaY;
             this.momentOfInertiaZ = sectionFromLibrary.MomentOfInertiaZ;
+            this.torsionalConstantX = sectionFromLibrary.TorsionalConstantX;
             this.name = sectionFromLibrary.Name;
             this.number = sectionFromLibrary.Number;
             this.type = sectionFromLibrary.Type;
@@ -56,6 +58,14 @@ namespace FiniteElements.Adapters
             get
             {
                 return this.momentOfInertiaZ;
+            }
+        }
+
+        public double TorsionalConstantX
+        {
+            get
+            {
+                return this.torsionalConstantX;
             }
         }
 

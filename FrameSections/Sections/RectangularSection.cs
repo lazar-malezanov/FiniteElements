@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using FrameSections.Contracts;
+using System;
 
 namespace FrameSections.Sections
 {
@@ -12,6 +13,7 @@ namespace FrameSections.Sections
         private double area;
         private double momentOfInertiaY;
         private double momentOfInertiaZ;
+        private double torsionalConstantX;
         private double mju = 1.2;
         private double number;
 
@@ -23,11 +25,7 @@ namespace FrameSections.Sections
             Guard.WhenArgument(width, "width").IsNaN().Throw();
             Guard.WhenArgument(width, "width").IsLessThan(0.0).Throw();
 
-            this.Height = height;
-            this.Width = width;
-            this.area = height * width;
-            this.momentOfInertiaY = height * height * height * width / 12.0;
-            this.momentOfInertiaZ = height * width * width * width / 12.0;
+            InitializeProperties(height, width);
         }
 
         public double Height
@@ -42,10 +40,7 @@ namespace FrameSections.Sections
                 Guard.WhenArgument(value, "height").IsNaN().Throw();
                 Guard.WhenArgument(value, "height").IsLessThan(0.0).Throw();
 
-                this.height = value;
-                this.area = this.height * this.width;
-                this.momentOfInertiaY = this.height * this.height * this.height * this.width / 12.0;
-                this.momentOfInertiaZ = this.height * this.width * this.width * this.width / 12.0;
+                InitializeProperties(value, this.width);
             }
         }
 
@@ -61,10 +56,7 @@ namespace FrameSections.Sections
                 Guard.WhenArgument(value, "width").IsNaN().Throw();
                 Guard.WhenArgument(value, "width").IsLessThan(0.0).Throw();
 
-                this.width = value;
-                this.area = this.height * this.width;
-                this.momentOfInertiaY = this.height * this.height * this.height * this.width / 12.0;
-                this.momentOfInertiaZ = this.height * this.width * this.width * this.width / 12.0;
+                InitializeProperties(this.height, value);
             }
         }
 
@@ -89,6 +81,14 @@ namespace FrameSections.Sections
             get
             {
                 return this.momentOfInertiaZ;
+            }
+        }
+
+        public double TorsionalConstantX
+        {
+            get
+            {
+                return this.torsionalConstantX;
             }
         }
 
@@ -134,6 +134,20 @@ namespace FrameSections.Sections
             {
                 name = value;
             }
+        }
+
+        private void InitializeProperties(double height, double width)
+        {
+            this.height = height;
+            this.width = width;
+            this.area = height * width;
+            this.momentOfInertiaY = height * height * height * width / 12.0;
+            this.momentOfInertiaZ = height * width * width * width / 12.0;
+
+            double a = 0.5 * Math.Max(height, width);
+            double b = 0.5 * Math.Min(height, width);
+
+            this.torsionalConstantX = a * b * b * b * ((16.0 / 3.0) - 3.36 * (b / a) * (1 - (b * b * b * b) / (12.0 * a * a * a * a)));
         }
     }
 }

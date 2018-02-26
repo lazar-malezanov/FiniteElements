@@ -11,8 +11,6 @@ namespace FiniteElements.Models.Contracts
 
         List<ILoad> Loads { get; }
 
-        Matrix<double> LocalMatrix { get; set; }
-
         double Number { get; set; }
     }
 }

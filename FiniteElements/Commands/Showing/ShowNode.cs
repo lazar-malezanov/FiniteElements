@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
-using FiniteElements.Models.ExtensionMethods;
 using FiniteElements.Models.Nodes;
+using FiniteElements.Models.ServiceClasses;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace FiniteElements.Commands.Showing
             }
 
             Node node = base.dbctx.Nodes[nodeId];
-            string result = node.AsString();     
+            string result = NodeService.AsString(node);     
 
             return result;
         }

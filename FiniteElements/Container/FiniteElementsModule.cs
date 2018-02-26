@@ -1,5 +1,6 @@
 ﻿using FiniteElements.Adapters;
 using FiniteElements.Commands.Assign;
+using FiniteElements.Commands.Assign.Releases;
 using FiniteElements.Commands.Contracts;
 using FiniteElements.Commands.Creating;
 using FiniteElements.Commands.Listing;
@@ -11,14 +12,13 @@ using FiniteElements.Core.Factories;
 using FiniteElements.Core.Providers;
 using FiniteElements.Models.Contracts;
 using FiniteElements.Models.FrameModels.FrameElements;
-using FiniteElements.Models.FrameModels.FrameLoads;
 using FrameSections;
 using Materials;
 using Ninject.Modules;
 
 namespace FiniteElements.Container
 {
-    internal class FiniteElementCulvertModule : NinjectModule
+    internal class FiniteElementsModule : NinjectModule
     {
         public override void Load()
         {
@@ -48,8 +48,39 @@ namespace FiniteElements.Container
 
             //Assign Commands
             this.Bind<ICommand>().To<AssignFrameSection>().Named("assignsection");
-            this.Bind<ICommand>().To<AssignLinearlyDistributedLoadToFrame>().Named("assignlinearlydistributedloadtoframe");
             this.Bind<ICommand>().To<AssignMaterialToFrameElement>().Named("assignmaterial");
+
+            ////Concentrated Loads
+            this.Bind<ICommand>().To<AssignConcentratedMomentXYPlaneToFrame>().Named("assignconcentratedmomentxyplanetoframe");
+            this.Bind<ICommand>().To<AssignConcentratedMomentXZPlaneToFrame>().Named("assignconcentratedmomentxzplanetoframe");
+            this.Bind<ICommand>().To<AssignConcentratedNormalLoadToFrame>().Named("assignconcentratednormalloadtoframe");
+            this.Bind<ICommand>().To<AssignConcentratedShearLoadXYPlaneToFrame>().Named("assignconcentratedshearloadxyplanetoframe");
+            this.Bind<ICommand>().To<AssignConcentratedShearLoadXZPlaneToFrame>().Named("assignconcentratedshearloadxzplanetoframe");
+            this.Bind<ICommand>().To<AssignConcentratedTorsionToFrame>().Named("assignconcentratedtorsiontoframe");
+
+            ////Distributed Loads
+            this.Bind<ICommand>().To<AssignDistributedMomentXYPlaneToFrame>().Named("assigndistributedmomentxyplanetoframe");
+            this.Bind<ICommand>().To<AssignDistributedMomentXZPlaneToFrame>().Named("assigndistributedmomentxzplanetoframe");
+            this.Bind<ICommand>().To<AssignDistributedNormalLoadToFrame>().Named("assigndistributednormalloadtoframe");
+            this.Bind<ICommand>().To<AssignDistributedShearLoadXYPlaneToFrame>().Named("assigndistributedshearloadxyplanetoframe");
+            this.Bind<ICommand>().To<AssignDistributedShearLoadXZPlaneToFrame>().Named("assigndistributedshearloadxzplanetoframe");
+            this.Bind<ICommand>().To<AssignDistributedTorsionToFrame>().Named("assigndistributedtorsiontoframe");
+
+            ////Moment Releases
+            this.Bind<ICommand>().To<AssignMomentAroundYReleaseNode1>().Named("assignmomentaroundyreleasenode1");
+            this.Bind<ICommand>().To<AssignMomentAroundYReleaseNode2>().Named("assignmomentaroundyreleasenode2");
+            this.Bind<ICommand>().To<AssignMomentAroundZReleaseNode1>().Named("assignmomentaroundzreleasenode1");
+            this.Bind<ICommand>().To<AssignMomentAroundZReleaseNode2>().Named("assignmomentaroundzreleasenode2");
+            this.Bind<ICommand>().To<AssignTorsionReleaseAtNode1>().Named("assigntorsionreleaseatnode1");
+            this.Bind<ICommand>().To<AssignTorsionReleaseAtNode2>().Named("assigntorsionreleaseatnode2");
+
+            ////Force Releases
+            this.Bind<ICommand>().To<AssignShearYReleaseNode1>().Named("assignshearyreleasenode1");
+            this.Bind<ICommand>().To<AssignShearYReleaseNode2>().Named("assignshearyreleasenode2");
+            this.Bind<ICommand>().To<AssignShearZReleaseNode1>().Named("assignshearzreleasenode1");
+            this.Bind<ICommand>().To<AssignShearZReleaseNode2>().Named("assignshearzreleasenode2");
+            this.Bind<ICommand>().To<AssignNormalReleaseAtNode1>().Named("assignnormalreleaseatnode1");
+            this.Bind<ICommand>().To<AssignNormalReleaseAtNode2>().Named("assignnormalreleaseatnode2");
 
             //Create Commands
             this.Bind<ICommand>().To<CreateFrameElement>().Named("createelement");

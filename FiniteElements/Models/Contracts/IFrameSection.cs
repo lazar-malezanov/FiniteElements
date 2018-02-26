@@ -12,6 +12,8 @@
 
         double MomentOfInertiaZ { get; }
 
+        double TorsionalConstantX { get; }
+
         double Mju { get; }
 
         double Number { get; set; }

@@ -2,17 +2,17 @@
 using FiniteElements.Core.Contracts;
 using FiniteElements.Core.Factories;
 using FiniteElements.Models.Contracts;
-using FiniteElements.Models.ExtensionMethods;
+using FiniteElements.Models.ServiceClasses;
 using System;
 using System.Collections.Generic;
 
 namespace FiniteElements.Commands.Assign
 {
-    internal class AssignLinearlyDistributedLoadToFrame : AssignCommand
+    internal class AssignConcentratedTorsionToFrame : AssignCommand
     {
         private IFrameLoadFactory factory;
 
-        public AssignLinearlyDistributedLoadToFrame(IDatabase dbctx, IFrameLoadFactory factory) : base(dbctx)
+        public AssignConcentratedTorsionToFrame(IDatabase dbctx, IFrameLoadFactory factory) : base(dbctx)
         {
             Guard.WhenArgument(factory, "factory").IsNull().Throw();
 
@@ -23,28 +23,30 @@ namespace FiniteElements.Commands.Assign
         {
             int elementId;
             int loadCaseNumber;
-            double intensity;
+            double loadValue;
+            double loadPosition;
 
             try
             {
                 elementId = int.Parse(parameters[0]);
                 loadCaseNumber = int.Parse(parameters[1]);
-                intensity = double.Parse(parameters[2]);
+                loadValue = double.Parse(parameters[2]);
+                loadPosition = double.Parse(parameters[3]);
             }
             catch
             {
-                throw new ArgumentException("Failed to parse AssignLinearlyDistributedLoadToFrame command parameters.");
+                throw new ArgumentException("Failed to parse AssignConcentratedTorsionToFrame command parameters.");
             }
 
             IFrameElement frameElement = base.dbctx.FrameElements[elementId];
             ILoadCase loadCase = base.dbctx.LoadCases[loadCaseNumber];
 
-            ILoad frameLoad = this.factory.CreateLinearlyDistributedLoad(intensity, frameElement.ElementLength);
-            frameLoad.LoadCaseNumber = loadCaseNumber;
-            frameLoad.LoadCase = loadCase;
-            frameElement.AddLoad(frameLoad);
+            ILoad frameLoad = this.factory.CreateConcentratedNormalLoad(loadCase, frameElement.ElementLength, 0.0,
+                loadValue, loadPosition);
 
-            return $"Linearly Distributed frame load with intensity {intensity} and Load Case Numeber {loadCaseNumber} has been assigned to element with ID {frameElement.Number}.";
+            FrameService.AddLoad(frameElement, frameLoad);
+
+            return $"Concentrated torsion frame load with intensity {loadValue} and Load Case Numeber {loadCaseNumber} has been assigned to element with ID {frameElement.Number}.";
         }
     }
 }

@@ -19,6 +19,21 @@ namespace FiniteElements.Models.FrameModels.FrameElements
         private double number;
         private double elementLength;
         private double alfa;
+        
+        private bool torsionReleaseNode1;
+        private bool momentAroundYReleaseNode1;
+        private bool momentAroundZReleaseNode1;
+        private bool normalReleaseNode1;
+        private bool shearYReleaseNode1;
+        private bool shearZReleaseNode1;
+
+        private bool torsionReleaseNode2;
+        private bool momentAroundYReleaseNode2;
+        private bool momentAroundZReleaseNode2;
+        private bool normalReleaseNode2;
+        private bool shearYReleaseNode2;
+        private bool shearZReleaseNode2;
+
 
         public FrameElement(Node node1, Node node2)
         {
@@ -34,8 +49,11 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             double X2 = node2.XCoord;
             double Y1 = node1.YCoord;
             double Y2 = node2.YCoord;
-            this.elementLength = Math.Sqrt(Math.Pow(X1 - X2, 2) + Math.Pow(Y1 - Y2, 2));
-            this.alfa = Math.Atan2(X2 - X1, Y2 - Y1);
+            double Z1 = node1.ZCoord;
+            double Z2 = node2.ZCoord;
+
+            this.elementLength = Math.Sqrt(Math.Pow(X1 - X2, 2) + Math.Pow(Y1 - Y2, 2) + Math.Pow(Z1 - Z2, 2));
+            this.alfa = 0;
         }
 
         public IMaterial MaterialProp
@@ -73,20 +91,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
                 return this.loads;
             } 
         }
-
-        public Matrix<double> LocalMatrix
-        {
-            get
-            {
-                return this.localMatrix;
-            }
-
-            set
-            {
-                this.localMatrix = value;
-            }
-        }
-
+       
         public double Number
         {
             get
@@ -133,6 +138,160 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             }
         }      
 
-             
+        public bool TorsionReleaseNode1
+        {
+            get
+            {
+                return this.torsionReleaseNode1;
+            }
+            
+            set
+            {
+                this.torsionReleaseNode1 = value;
+            }
+        }
+
+        public bool MomentAroundYReleaseNode1
+        {
+            get
+            {
+                return this.momentAroundYReleaseNode1;
+            }
+
+            set
+            {
+                this.momentAroundYReleaseNode1 = value;
+            }
+        }
+
+        public bool MomentAroundZReleaseNode1
+        {
+            get
+            {
+                return this.momentAroundZReleaseNode1;
+            }
+
+            set
+            {
+                this.momentAroundZReleaseNode1 = value;
+            }
+        }
+
+        public bool NormalReleaseNode1
+        {
+            get
+            {
+                return this.normalReleaseNode1;
+            }
+
+            set
+            {
+                this.normalReleaseNode1 = value;
+            }
+        }
+
+        public bool ShearYReleaseNode1
+        {
+            get
+            {
+                return this.shearYReleaseNode1;
+            }
+
+            set
+            {
+                this.shearYReleaseNode1 = value;
+            }
+        }
+
+        public bool ShearZReleaseNode1
+        {
+            get
+            {
+                return this.shearZReleaseNode1;
+            }
+
+            set
+            {
+                this.shearZReleaseNode1 = value;
+            }
+        }
+
+        public bool TorsionReleaseNode2
+        {
+            get
+            {
+                return this.torsionReleaseNode2;
+            }
+
+            set
+            {
+                this.torsionReleaseNode2 = value;
+            }
+        }
+
+        public bool MomentAroundYReleaseNode2
+        {
+            get
+            {
+                return this.momentAroundYReleaseNode2;
+            }
+
+            set
+            {
+                this.momentAroundYReleaseNode2 = value;
+            }
+        }
+
+        public bool MomentAroundZReleaseNode2
+        {
+            get
+            {
+                return this.momentAroundZReleaseNode2;
+            }
+
+            set
+            {
+                this.momentAroundZReleaseNode2 = value;
+            }
+        }
+
+        public bool NormalReleaseNode2
+        {
+            get
+            {
+                return this.normalReleaseNode2;
+            }
+
+            set
+            {
+                this.normalReleaseNode2 = value;
+            }
+        }
+
+        public bool ShearYReleaseNode2
+        {
+            get
+            {
+                return this.shearYReleaseNode2;
+            }
+
+            set
+            {
+                this.shearYReleaseNode2 = value;
+            }
+        }
+
+        public bool ShearZReleaseNode2
+        {
+            get
+            {
+                return this.shearZReleaseNode2;
+            }
+
+            set
+            {
+                this.shearZReleaseNode2 = value;
+            }
+        }
     }
 }

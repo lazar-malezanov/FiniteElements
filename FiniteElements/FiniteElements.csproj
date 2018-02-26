@@ -7,8 +7,8 @@
     <ProjectGuid>{F735E4F9-D0C1-4AE7-982D-42E5424A5837}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FiniteElementCulvert</RootNamespace>
-    <AssemblyName>FiniteElementCulvert</AssemblyName>
+    <RootNamespace>FiniteElements</RootNamespace>
+    <AssemblyName>FiniteElements</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -60,9 +60,32 @@
     <Compile Include="Adapters\MaterialAdapter.cs" />
     <Compile Include="Adapters\MaterialLibraryAdapter.cs" />
     <Compile Include="Commands\Assign\AssignCommand.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedMomentXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedMomentXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedNormalLoadToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedShearLoadXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedShearLoadXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignConcentratedTorsionToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedMomentXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedMomentXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedShearLoadXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedShearLoadXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedTorsionToFrame.cs" />
     <Compile Include="Commands\Assign\AssignFrameSection.cs" />
-    <Compile Include="Commands\Assign\AssignLinearlyDistributedLoadToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\AssignDistributedNormalLoadToFrame.cs" />
     <Compile Include="Commands\Assign\AssignMaterialToFrameElement.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignMomentAroundYReleaseNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignMomentAroundYReleaseNode2.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignMomentAroundZReleaseNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignMomentAroundZReleaseNode2.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignNormalReleaseAtNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignNormalReleaseAtNode2.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignShearYReleaseNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignShearYReleaseNode2.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignShearZReleaseNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignShearZReleaseNode2.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignTorsionReleaseAtNode1.cs" />
+    <Compile Include="Commands\Assign\Releases\AssignTorsionReleaseAtNode2.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Commands\Creating\CreateCommand.cs" />
     <Compile Include="Commands\Creating\CreateFrameElement.cs" />
@@ -80,7 +103,7 @@
     <Compile Include="Commands\Showing\ShowFrameSection.cs" />
     <Compile Include="Commands\Showing\ShowMaterial.cs" />
     <Compile Include="Commands\Showing\ShowNode.cs" />
-    <Compile Include="Container\FiniteElementCulvertModule.cs" />
+    <Compile Include="Container\FiniteElementsModule.cs" />
     <Compile Include="ContractsForExternalLibraries\IExternalFrameSectionLibrary.cs" />
     <Compile Include="ContractsForExternalLibraries\IExternalMaterialLibrary.cs" />
     <Compile Include="Core\Contracts\ICommandProcessor.cs" />
@@ -108,16 +131,28 @@
     <Compile Include="Core\Providers\ConsoleWriter.cs" />
     <Compile Include="Models\Contracts\IElement.cs" />
     <Compile Include="Models\Contracts\IFrameElement.cs" />
-    <Compile Include="Models\ExtensionMethods\ExtensionMethodsForLoads.cs" />
-    <Compile Include="Models\ExtensionMethods\ExtensionMethodsForMaterials.cs" />
-    <Compile Include="Models\ExtensionMethods\ExtensionMethodsForNodes.cs" />
-    <Compile Include="Models\ExtensionMethods\ExtensionMethodsForSections.cs" />
-    <Compile Include="Models\ExtensionMethods\ExtensionsForFrameElement.cs" />
     <Compile Include="Models\FrameModels\FrameElements\FrameElement.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\ConcentratedLoads.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\DistributedLoads.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Force\ConcentratedNormalForce.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Force\ConcentratedShearXYPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Force\ConcentratedShearXZPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Moment\ConcentratedMomentXYPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Moment\ConcentratedMomentXZPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfConcentratedLoads\Moment\ConcentratedTorsion.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Force\DistributedNormalForce.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Force\DistributedShearXYPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Force\DistributedShearXZPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXYPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXZPlane.cs" />
+    <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedTorsion.cs" />
     <Compile Include="Models\LoadCases\LoadCase.cs" />
-    <Compile Include="Models\FrameModels\FrameLoads\LinearlyDistributedLoad.cs" />
-    <Compile Include="Models\FrameModels\FrameLoads\TrapezoidLoad.cs" />
     <Compile Include="Models\Nodes\Node.cs" />
+    <Compile Include="Models\ServiceClasses\FrameLoadService.cs" />
+    <Compile Include="Models\ServiceClasses\FrameService.cs" />
+    <Compile Include="Models\ServiceClasses\MaterialService.cs" />
+    <Compile Include="Models\ServiceClasses\NodeService.cs" />
+    <Compile Include="Models\ServiceClasses\SectionService.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace FiniteElements
     {
         static void Main(string[] args)
         {
-            var kernel = new StandardKernel(new FiniteElementCulvertModule());
+            var kernel = new StandardKernel(new FiniteElementsModule());
             var engine = kernel.Get<IEngine>();
             engine.Start();
         }

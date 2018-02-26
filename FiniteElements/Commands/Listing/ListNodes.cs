@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
-using FiniteElements.Models.ExtensionMethods;
 using FiniteElements.Models.Nodes;
+using FiniteElements.Models.ServiceClasses;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,7 +17,7 @@ namespace FiniteElements.Commands.Listing
 
             foreach (var node in nodes)
             {
-                result.AppendLine(node.AsString());
+                result.AppendLine(NodeService.AsString(node));
             }
 
             return result.ToString();

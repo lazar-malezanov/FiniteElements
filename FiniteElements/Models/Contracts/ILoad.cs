@@ -1,10 +1,10 @@
-﻿namespace FiniteElements.Models.Contracts
+﻿using MathNet.Numerics.LinearAlgebra;
+
+namespace FiniteElements.Models.Contracts
 {
     internal interface ILoad
     {
-        ILoadCase LoadCase { get; set; }
-
-        double LoadCaseNumber { get; set; }
+        ILoadCase LoadCase { get; }
 
         string Type { get; }
     }

@@ -1,10 +1,10 @@
 ﻿using FiniteElements.Models.Nodes;
 using System.Text;
 
-namespace FiniteElements.Models.ExtensionMethods
+namespace FiniteElements.Models.ServiceClasses
 {
-    internal static class ExtensionMethodsForNodes
-    {      
+    internal static class NodeService
+    {
         public static string AsString(this Node node)
         {
             var result = new StringBuilder();

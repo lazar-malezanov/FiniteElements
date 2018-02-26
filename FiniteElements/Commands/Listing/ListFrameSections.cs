@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
 using FiniteElements.Models.Contracts;
-using FiniteElements.Models.ExtensionMethods;
+using FiniteElements.Models.ServiceClasses;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,7 +17,7 @@ namespace FiniteElements.Commands.Listing
 
             foreach (var frameSection in frameSections)
             {
-                result.AppendLine(frameSection.AsString());
+                result.AppendLine(SectionService.AsString(frameSection));
             }
 
             return result.ToString();

@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
 using FiniteElements.Models.Contracts;
-using FiniteElements.Models.ExtensionMethods;
+using FiniteElements.Models.ServiceClasses;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,7 +17,7 @@ namespace FiniteElements.Commands.Listing
 
             foreach (var material in materials)
             {
-                result.AppendLine(material.AsString()); 
+                result.AppendLine(MaterialService.AsString(material)); 
             }
 
             return result.ToString();

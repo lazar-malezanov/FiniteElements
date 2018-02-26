@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
 using FiniteElements.Models.Contracts;
-using FiniteElements.Models.ExtensionMethods;
+using FiniteElements.Models.ServiceClasses;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace FiniteElements.Commands.Showing
             }
 
             IMaterial material = base.dbctx.Materials[materialId];
-            string result = material.AsString();
+            string result = MaterialService.AsString(material);
 
             return result;
         }

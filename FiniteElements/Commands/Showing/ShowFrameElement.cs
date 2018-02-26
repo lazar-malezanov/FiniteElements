@@ -1,6 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
 using FiniteElements.Models.Contracts;
-using FiniteElements.Models.ExtensionMethods;
+using FiniteElements.Models.ServiceClasses;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace FiniteElements.Commands.Showing
             }
 
             IFrameElement frameElement = base.dbctx.FrameElements[frameId];
-            string result = frameElement.AsString();
+            string result = FrameService.AsString(frameElement);
 
             return result;
         }

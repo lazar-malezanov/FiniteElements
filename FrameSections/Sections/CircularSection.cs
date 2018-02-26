@@ -12,6 +12,7 @@ namespace FrameSections.Sections
         private double area;
         private double momentOfInertiaY;
         private double momentOfInertiaZ;
+        private double torsionalConstantX;
         private double mju = 1.25;
         private double number;
 
@@ -20,10 +21,8 @@ namespace FrameSections.Sections
             Guard.WhenArgument(diameter, "diameter").IsNaN().Throw();
             Guard.WhenArgument(diameter, "diameter").IsLessThan(0.0).Throw();
 
-            this.Diameter = diameter;
-            this.area = Math.PI * diameter * diameter / 4.0;
-            this.momentOfInertiaY = Math.PI * diameter * diameter * diameter * diameter / 64.0;
-            this.momentOfInertiaZ = momentOfInertiaY;
+            this.diameter = diameter;
+            InitializeProperties(diameter);
         }
 
         public double Diameter
@@ -38,10 +37,7 @@ namespace FrameSections.Sections
                 Guard.WhenArgument(value, "diameter").IsNaN().Throw();
                 Guard.WhenArgument(value, "diameter").IsLessThan(0.0).Throw();
 
-                this.diameter = value;
-                this.area = Math.PI * this.diameter * this.diameter / 4.0;
-                this.momentOfInertiaY = Math.PI * diameter * diameter * diameter * diameter / 64.0;
-                this.momentOfInertiaZ = momentOfInertiaY;
+                InitializeProperties(diameter);
             }
         }        
 
@@ -66,6 +62,14 @@ namespace FrameSections.Sections
             get
             {
                 return this.momentOfInertiaZ;
+            }
+        }
+
+        public double TorsionalConstantX
+        {
+            get
+            {
+                return this.torsionalConstantX;
             }
         }
 
@@ -111,6 +115,16 @@ namespace FrameSections.Sections
             {
                 name = value;
             }
+        }
+
+        private void InitializeProperties(double diameter)
+        {
+            this.area = Math.PI * diameter * diameter / 4.0;
+            this.momentOfInertiaY = Math.PI * diameter * diameter * diameter * diameter / 64.0;
+            this.momentOfInertiaZ = momentOfInertiaY;
+
+            double radius = 0.5 * diameter;
+            this.torsionalConstantX = Math.PI * radius * radius * radius * radius * 0.5;
         }
     }
 }
