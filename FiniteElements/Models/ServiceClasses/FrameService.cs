@@ -554,13 +554,13 @@ namespace FiniteElements.Models.ServiceClasses
             double c3 = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
             double d = Math.Sqrt(c1 * c1 + c2 * c2);
 
-            double b1 = ((-1) * c1 * c3 * cosineAlfa - c2 * sineAlfa) / d;
-            double b2 = (c1 * sineAlfa - c2 * c3 * cosineAlfa) / d;
-            double b3 = d * cosineAlfa;
+            double b1 = (-1) * c2 / d;
+            double b2 = c1 / d;
+            double b3 = 0.0;
 
-            double a1 = (c1 * c3 * sineAlfa + c2 * cosineAlfa) / d;
-            double a2 = (c1 * cosineAlfa + c2 * c3 * sineAlfa) / d;
-            double a3 = (-1) * d * sineAlfa;
+            double a1 = (-1) * c1 * c3 / d;
+            double a2 = (-1) * c2 * c3 / d;
+            double a3 = d;
 
             Matrix<double> t;
 
@@ -569,12 +569,12 @@ namespace FiniteElements.Models.ServiceClasses
                 double lambda;
                 if (element.Node2.ZCoord - element.Node1.ZCoord > 0)
                 {
-                    lambda = 1;
+                    lambda = 1.0;
                 }
 
                 else
                 {
-                    lambda = -1;
+                    lambda = -1.0;
                 }
 
                 t = SparseMatrix.OfArray(new double[,]
@@ -582,27 +582,27 @@ namespace FiniteElements.Models.ServiceClasses
                     //First row
                     { 0.0, 0.0, lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Second row
-                    { cosineAlfa, lambda * sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Third row
-                    { (-1) * sineAlfa, lambda * cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Fourth row
                     { 0.0, 0.0, 0.0, 0.0, 0.0, lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Fifth row
-                    { 0.0, 0.0, 0.0, cosineAlfa, lambda * sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Sixth row
-                    { 0.0, 0.0, 0.0, (-1) * sineAlfa, lambda * cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Seventh row
                     { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, lambda, 0.0, 0.0, 0.0 },
                     //Eighth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cosineAlfa, lambda * sineAlfa, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 },
                     //Ninth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * sineAlfa, lambda * cosineAlfa, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Tenth row
                     { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, lambda },
                     //Eleventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cosineAlfa, lambda * sineAlfa, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 },
                     //Twelfth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * sineAlfa, lambda * cosineAlfa, 0.0 }
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0 }
                 });
             }
 
