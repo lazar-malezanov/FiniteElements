@@ -2,7 +2,6 @@
 using FiniteElements.Models.Contracts;
 using FiniteElements.Models.Nodes;
 using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
 using System;
 using System.Collections.Generic;
 
@@ -137,6 +136,19 @@ namespace FiniteElements.Models.FrameModels.FrameElements
                 return this.elementLength;
             }
         }      
+
+        public Matrix<double> LocalMatrix
+        {
+            get
+            {
+                return this.localMatrix;
+            }
+
+            set
+            {
+                this.localMatrix = value;
+            }
+        }
 
         public bool TorsionReleaseNode1
         {

@@ -1,4 +1,6 @@
-﻿using FiniteElements.Models.Nodes;
+﻿using Bytes2you.Validation;
+using FiniteElements.Models.Contracts;
+using FiniteElements.Models.Nodes;
 using System.Text;
 
 namespace FiniteElements.Models.ServiceClasses
@@ -16,6 +18,12 @@ namespace FiniteElements.Models.ServiceClasses
             result.AppendLine("----");
 
             return result.ToString();
+        }
+
+        public static void AddLoad(Node node, ILoad load)
+        {
+            Guard.WhenArgument(load, "load").IsNull().Throw();
+            node.Loads.Add(load);
         }
     }
 }

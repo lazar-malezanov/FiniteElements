@@ -1,9 +1,6 @@
 ﻿using FiniteElements.Models.Contracts;
+using MathNet.Numerics.LinearAlgebra;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.Moment
 {
@@ -14,7 +11,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.M
         public DistributedTorsion(ILoadCase loadCase, double elementLength, double gCoefficient, double loadAtStart, double loadAtEnd,
             double loadStartsAt, double loadEndsAt) : base(loadCase, elementLength, gCoefficient, loadAtStart, loadAtEnd, loadStartsAt, loadEndsAt) { }
 
-        public override List<double> GenerateLoad()
+        public override Vector<double> GenerateLoad()
         {
             //First part
             double t11 = (-(Math.Pow(this.loadEndsAt, 2.0) - Math.Pow(this.loadStartsAt, 2.0)) / (2.0 * this.elementLength)
@@ -44,7 +41,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.M
             double t1 = t11 + t12 + t13;
             double t2 = t21 + t22 + t23;
 
-            return new List<double> { t1, t2 };
+            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, 0.0, 0.0, t1, 0.0, 0.0, 0.0, 0.0, 0.0, t2, 0.0, 0.0 });
         }
 
         public override string Type

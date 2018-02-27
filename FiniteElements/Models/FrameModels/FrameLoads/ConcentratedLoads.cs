@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using FiniteElements.Models.Contracts;
+using MathNet.Numerics.LinearAlgebra;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,6 @@ namespace FiniteElements.Models.FrameModels.FrameLoads
 
         public abstract string Type { get; }
 
-        public abstract List<double> GenerateLoad();
+        public abstract Vector<double> GenerateLoad();
     }
 }

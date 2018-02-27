@@ -1,9 +1,6 @@
 ﻿using FiniteElements.Models.Contracts;
+using MathNet.Numerics.LinearAlgebra;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.Moment
 {
@@ -14,7 +11,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.M
         public DistributedMomentXYPlane(ILoadCase loadCase, double elementLength, double gCoefficient, double loadAtStart, double loadAtEnd,
             double loadStartsAt, double loadEndsAt) : base(loadCase, elementLength, gCoefficient, loadAtStart, loadAtEnd, loadStartsAt, loadEndsAt) { }
 
-        public override List<double> GenerateLoad()
+        public override Vector<double> GenerateLoad()
         {
             //First part
             double q11 = (2.0 * (Math.Pow(this.loadEndsAt, 3.0) - Math.Pow(this.loadStartsAt, 3.0))
@@ -85,7 +82,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.M
             double m1 = m11 + m12 + m13;
             double m2 = m21 + m22 + m23;
 
-            return new List<double> { q1, m1, q2, m2 };
+            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, q1, 0.0, 0.0, 0.0, m1, 0.0, q2, 0.0, 0.0, 0.0, m2 });
         }
 
         public override string Type

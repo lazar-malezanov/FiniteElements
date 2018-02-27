@@ -60,20 +60,26 @@
     <Compile Include="Adapters\MaterialAdapter.cs" />
     <Compile Include="Adapters\MaterialLibraryAdapter.cs" />
     <Compile Include="Commands\Assign\AssignCommand.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedMomentXYPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedMomentXZPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedNormalLoadToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedShearLoadXYPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedShearLoadXZPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignConcentratedTorsionToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedMomentXYPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedMomentXZPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedShearLoadXYPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedShearLoadXZPlaneToFrame.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedTorsionToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedNormalLoadToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedShearLoadXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedShearLoadXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedTorsionToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedMomentXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedMomentXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedShearLoadXYPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedShearLoadXZPlaneToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedTorsionToFrame.cs" />
     <Compile Include="Commands\Assign\AssignFrameSection.cs" />
-    <Compile Include="Commands\Assign\Loads\AssignDistributedNormalLoadToFrame.cs" />
+    <Compile Include="Commands\Assign\Loads\FrameLoads\AssignDistributedNormalLoadToFrame.cs" />
     <Compile Include="Commands\Assign\AssignMaterialToFrameElement.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignForceXToNode.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignForceYToNode.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignForceZToNode.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignMomentAroundXToNode.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignMomentAroundYToNode.cs" />
+    <Compile Include="Commands\Assign\Loads\NodalLoads\AssignMomentAroundZToNode.cs" />
     <Compile Include="Commands\Assign\Releases\AssignMomentAroundYReleaseNode1.cs" />
     <Compile Include="Commands\Assign\Releases\AssignMomentAroundYReleaseNode2.cs" />
     <Compile Include="Commands\Assign\Releases\AssignMomentAroundZReleaseNode1.cs" />
@@ -146,8 +152,18 @@
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXYPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXZPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedTorsion.cs" />
+    <Compile Include="Models\GlobalMatrix.cs" />
+    <Compile Include="Models\GlobalMatrixFrameElements.cs" />
     <Compile Include="Models\LoadCases\LoadCase.cs" />
     <Compile Include="Models\Nodes\Node.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Force\ForceXDirection.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Force\ForceYDirection.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Force\ForceZDirection.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Moment\MomentAroundX.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Moment\MomentAroundY.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\Moment\MomentAroundZ.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\NodalForces.cs" />
+    <Compile Include="Models\Nodes\NodeLoads\NodalMoments.cs" />
     <Compile Include="Models\ServiceClasses\FrameLoadService.cs" />
     <Compile Include="Models\ServiceClasses\FrameService.cs" />
     <Compile Include="Models\ServiceClasses\MaterialService.cs" />
@@ -171,6 +187,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\Assign\Springs\" />
+    <Folder Include="Commands\Assign\Supports\" />
     <Folder Include="Commands\Deleting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

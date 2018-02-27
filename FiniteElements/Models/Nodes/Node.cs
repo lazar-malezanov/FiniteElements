@@ -1,4 +1,6 @@
 ﻿using Bytes2you.Validation;
+using FiniteElements.Models.Contracts;
+using System.Collections.Generic;
 
 namespace FiniteElements.Models.Nodes
 {
@@ -8,6 +10,7 @@ namespace FiniteElements.Models.Nodes
         private double yCoord;
         private double zCoord;
         private double number;
+        private List<ILoad> loads;
         private bool uConstraint;
         private bool vConstraint;
         private bool wConstraint;
@@ -80,6 +83,14 @@ namespace FiniteElements.Models.Nodes
             {
                 Guard.WhenArgument(value, "number").IsNaN();
                 this.number = value;
+            }
+        }
+
+        public List<ILoad> Loads
+        {
+            get
+            {
+                return this.loads;
             }
         }
 

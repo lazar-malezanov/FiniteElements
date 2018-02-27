@@ -1,5 +1,6 @@
 ﻿using FiniteElements.Adapters;
 using FiniteElements.Commands.Assign;
+using FiniteElements.Commands.Assign.Loads.NodalLoads;
 using FiniteElements.Commands.Assign.Releases;
 using FiniteElements.Commands.Contracts;
 using FiniteElements.Commands.Creating;
@@ -81,6 +82,14 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignShearZReleaseNode2>().Named("assignshearzreleasenode2");
             this.Bind<ICommand>().To<AssignNormalReleaseAtNode1>().Named("assignnormalreleaseatnode1");
             this.Bind<ICommand>().To<AssignNormalReleaseAtNode2>().Named("assignnormalreleaseatnode2");
+
+            ////Nodal Forces and Moments
+            this.Bind<ICommand>().To<AssignForceXToNode>().Named("assignforcextonode");
+            this.Bind<ICommand>().To<AssignForceYToNode>().Named("assignforceytonode");
+            this.Bind<ICommand>().To<AssignForceZToNode>().Named("assignforceztonode");
+            this.Bind<ICommand>().To<AssignMomentAroundXToNode>().Named("assignmomentaroundxtonode");
+            this.Bind<ICommand>().To<AssignMomentAroundYToNode>().Named("assignmomentaroundytonode");
+            this.Bind<ICommand>().To<AssignMomentAroundZToNode>().Named("assignmomentaroundztonode");
 
             //Create Commands
             this.Bind<ICommand>().To<CreateFrameElement>().Named("createelement");

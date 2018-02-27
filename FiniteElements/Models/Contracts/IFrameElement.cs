@@ -1,5 +1,5 @@
 ﻿using FiniteElements.Models.Nodes;
-using System.Collections.Generic;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace FiniteElements.Models.Contracts
 {
@@ -12,6 +12,8 @@ namespace FiniteElements.Models.Contracts
         double Alfa { get; }
 
         double ElementLength { get; }
+
+        Matrix<double> LocalMatrix { get; set; }
 
         bool TorsionReleaseNode1 { get; set; }
 

@@ -637,11 +637,10 @@ namespace FiniteElements.Models.ServiceClasses
                 });
             }
 
-            Matrix<double> localMatrix = FrameService.GenerateLocalMatrix(element);
-            return t.Transpose() * localMatrix * t;
+            return t.Transpose() * element.LocalMatrix * t;
         }
 
-        public static Matrix<double> AddWinklerConstant(IFrameElement element, Matrix<double> localMatrix, double winklerConstant)
+        public static Matrix<double> AddWinklerConstant(IFrameElement element, double winklerConstant)
         {
             Guard.WhenArgument(winklerConstant, "winklerConstant").IsNaN().Throw();
             Guard.WhenArgument(winklerConstant, "winklerConstant").IsLessThan(0.0).Throw();
@@ -652,7 +651,7 @@ namespace FiniteElements.Models.ServiceClasses
             double Y1 = element.Node1.YCoord;
             double Y2 = element.Node2.YCoord;
             double elementLength = Math.Sqrt(Math.Pow(X1 - X2, 2) + Math.Pow(Y1 - Y2, 2));
-
+            //Should be fixed at some point!!!
             Matrix<double> winkler = DenseMatrix.OfArray(new double[,]
             {
                 //First row
@@ -669,7 +668,7 @@ namespace FiniteElements.Models.ServiceClasses
                 {0.0, - 13.0 * elementLength * elementLength * winklerConstant / 420, -3.0 * elementLength * elementLength * elementLength * winklerConstant / 420.0, 0.0, -22.0 * elementLength * elementLength * winklerConstant / 420.0, 4.0 * elementLength * elementLength * elementLength * winklerConstant / 420.0}
             });
 
-            return localMatrix + winkler;
+            return element.LocalMatrix + winkler;
         }
 
         public static void AddLoad(IFrameElement element, ILoad load)

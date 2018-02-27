@@ -1,9 +1,6 @@
 ﻿using FiniteElements.Models.Contracts;
+using MathNet.Numerics.LinearAlgebra;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfConcentratedLoads.Force
 {
@@ -14,7 +11,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfConcentratedLoads.
         public ConcentratedShearXYPlane(ILoadCase loadCase, double elementLength, double gCoefficient, 
             double loadValue, double loadPosition) : base(loadCase, elementLength, gCoefficient, loadValue, loadPosition) { }
 
-        public override List<double> GenerateLoad()
+        public override Vector<double> GenerateLoad()
         {
             double q1 = (2.0 * Math.Pow(this.loadPosition, 3.0) - 3.0 * Math.Pow(this.elementLength, 1.0) * Math.Pow(this.loadPosition, 2.0) - 12.0 * this.gCoefficient * Math.Pow(this.loadPosition, 1.0) 
                 + Math.Pow(this.elementLength, 1.0) * (Math.Pow(this.elementLength, 2.0) + 12.0 * this.gCoefficient)) 
@@ -31,7 +28,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfConcentratedLoads.
                 - (6.0 * this.gCoefficient * (Math.Pow(this.elementLength, 1.0)) * Math.Pow(this.loadPosition, 1.0)))
                 * this.loadValue / (Math.Pow(this.elementLength, 1.0) * (Math.Pow(this.elementLength, 2.0) + 12.0 * this.gCoefficient));
 
-            return new List<double> { q1, m1, q2, m2 };
+            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, q1, 0.0, 0.0, 0.0, m1, 0.0, q2, 0.0, 0.0, 0.0, m2 });
         }
 
         public override string Type

@@ -1,9 +1,6 @@
 ﻿using FiniteElements.Models.Contracts;
+using MathNet.Numerics.LinearAlgebra;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.Force
 {
@@ -14,7 +11,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.F
         public DistributedNormalForce(ILoadCase loadCase, double elementLength, double gCoefficient, double loadAtStart, double loadAtEnd,
             double loadStartsAt, double loadEndsAt) : base(loadCase, elementLength, gCoefficient, loadAtStart, loadAtEnd, loadStartsAt, loadEndsAt) { }
 
-        public override List<double> GenerateLoad()
+        public override Vector<double> GenerateLoad()
         {
             //First part
             double n11 = (-(Math.Pow(this.loadEndsAt, 2.0) - Math.Pow(this.loadStartsAt, 2.0)) / (2.0 * this.elementLength) 
@@ -44,7 +41,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.F
             double n1 = n11 + n12 + n13;
             double n2 = n21 + n22 + n23;
 
-            return new List<double> { n1, n2 };
+            return Vector<double>.Build.SparseOfArray(new double[] { n1, 0.0, 0.0, 0.0, 0.0, 0.0, n2, 0.0, 0.0, 0.0, 0.0, 0.0 });
         }
 
         public override string Type
