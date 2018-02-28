@@ -60,6 +60,7 @@
     <Compile Include="Adapters\MaterialAdapter.cs" />
     <Compile Include="Adapters\MaterialLibraryAdapter.cs" />
     <Compile Include="Commands\AssembleGlobalFrameStiffnessMatrixCommand.cs" />
+    <Compile Include="Commands\AssembleGlobalLoadVectors.cs" />
     <Compile Include="Commands\Assign\AssignCommand.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXYPlaneToFrame.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXZPlaneToFrame.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Core\Providers\ConsoleWriter.cs" />
     <Compile Include="Models\Contracts\IElement.cs" />
     <Compile Include="Models\Contracts\IFrameElement.cs" />
+    <Compile Include="Models\Contracts\INodalLoad.cs" />
     <Compile Include="Models\FrameModels\FrameElements\FrameElement.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\ConcentratedLoads.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\DistributedLoads.cs" />
@@ -167,6 +169,8 @@
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXYPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXZPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedTorsion.cs" />
+    <Compile Include="Models\GlobalLoadVector.cs" />
+    <Compile Include="Models\GlobalNodalLoadVectors.cs" />
     <Compile Include="Models\GlobalStiffnessMatrix.cs" />
     <Compile Include="Models\GlobalFrameStiffnessMatrix.cs" />
     <Compile Include="Models\LoadCases\LoadCase.cs" />

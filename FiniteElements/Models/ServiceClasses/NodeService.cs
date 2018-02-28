@@ -22,7 +22,7 @@ namespace FiniteElements.Models.ServiceClasses
             return result.ToString();
         }
 
-        public static void AddLoad(Node node, ILoad load)
+        public static void AddLoad(Node node, INodalLoad load)
         {
             Guard.WhenArgument(load, "load").IsNull().Throw();
             node.Loads.Add(load);

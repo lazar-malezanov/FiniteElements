@@ -10,7 +10,7 @@ namespace FiniteElements.Models.Nodes
         private double yCoord;
         private double zCoord;
         private double number;
-        private List<ILoad> loads;
+        private List<INodalLoad> loads;
 
         private bool xSupport;
         private bool ySupport;
@@ -93,7 +93,7 @@ namespace FiniteElements.Models.Nodes
             }
         }
 
-        public List<ILoad> Loads
+        public List<INodalLoad> Loads
         {
             get
             {

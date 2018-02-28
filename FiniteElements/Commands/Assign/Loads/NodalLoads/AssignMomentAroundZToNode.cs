@@ -36,7 +36,7 @@ namespace FiniteElements.Commands.Assign.Loads.NodalLoads
             ILoadCase loadCase = base.dbctx.LoadCases[loadCaseNumber];
 
 
-            ILoad nodeLoad = new MomentAroundZ(loadCase, loadValue);
+            INodalLoad nodeLoad = new MomentAroundZ(loadCase, loadValue);
 
             NodeService.AddLoad(node, nodeLoad);
 

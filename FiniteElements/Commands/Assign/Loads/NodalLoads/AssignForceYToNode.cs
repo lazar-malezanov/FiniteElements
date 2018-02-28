@@ -33,7 +33,7 @@ namespace FiniteElements.Commands.Assign.Loads.NodalLoads
             ILoadCase loadCase = base.dbctx.LoadCases[loadCaseNumber];
 
 
-            ILoad nodeLoad = new ForceYDirection(loadCase, loadValue);
+            INodalLoad nodeLoad = new ForceYDirection(loadCase, loadValue);
 
             NodeService.AddLoad(node, nodeLoad);
 

@@ -4,7 +4,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace FiniteElements.Models.Nodes.NodeLoads
 {
-    internal abstract class NodalForces : ILoad
+    internal abstract class NodalForces : INodalLoad
     {
         protected readonly ILoadCase loadCase;
         protected readonly double loadValue;
@@ -21,6 +21,8 @@ namespace FiniteElements.Models.Nodes.NodeLoads
 
         public abstract string Type { get; }
 
-        public abstract ILoadCase LoadCase { get; }        
+        public abstract ILoadCase LoadCase { get; }
+
+        public abstract double LoadValue { get; }
     }
 }

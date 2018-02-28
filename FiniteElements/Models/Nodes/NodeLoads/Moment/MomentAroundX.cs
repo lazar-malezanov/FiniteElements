@@ -29,5 +29,13 @@ namespace FiniteElements.Models.Nodes.NodeLoads.Moment
                 return this.loadCase;
             }
         }
+
+        public override double LoadValue
+        {
+            get
+            {
+                return this.loadValue;
+            }
+        }
     }
 }
