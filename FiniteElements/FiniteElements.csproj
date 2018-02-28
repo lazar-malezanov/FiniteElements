@@ -59,6 +59,7 @@
     <Compile Include="Adapters\FrameSectionLibraryAdapter.cs" />
     <Compile Include="Adapters\MaterialAdapter.cs" />
     <Compile Include="Adapters\MaterialLibraryAdapter.cs" />
+    <Compile Include="Commands\AssembleGlobalFrameStiffnessMatrixCommand.cs" />
     <Compile Include="Commands\Assign\AssignCommand.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXYPlaneToFrame.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXZPlaneToFrame.cs" />
@@ -92,6 +93,18 @@
     <Compile Include="Commands\Assign\Releases\AssignShearZReleaseNode2.cs" />
     <Compile Include="Commands\Assign\Releases\AssignTorsionReleaseAtNode1.cs" />
     <Compile Include="Commands\Assign\Releases\AssignTorsionReleaseAtNode2.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignRxSpringToNode.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignRySpringToNode.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignRzSpringToNode.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignXSpringToNode.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignYSpringToNode.cs" />
+    <Compile Include="Commands\Assign\Springs\AssignZSpringToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignRxSupportToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignRySupportToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignRzSupportToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignXSupportToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignYSupportToNode.cs" />
+    <Compile Include="Commands\Assign\Supports\AssignZSupportToNode.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Commands\Creating\CreateCommand.cs" />
     <Compile Include="Commands\Creating\CreateFrameElement.cs" />
@@ -115,8 +128,10 @@
     <Compile Include="Core\Contracts\ICommandProcessor.cs" />
     <Compile Include="Core\Contracts\IDatabase.cs" />
     <Compile Include="Core\Contracts\IEngine.cs" />
-    <Compile Include="Core\Factories\FrameLoadFactory.cs" />
-    <Compile Include="Core\Factories\IFrameLoadFactory.cs" />
+    <Compile Include="Core\Factories\FrameFactories\FrameLoadFactory.cs" />
+    <Compile Include="Core\Factories\FrameFactories\IFrameLoadFactory.cs" />
+    <Compile Include="Core\Factories\GlobalStiffnessMatrixFactory.cs" />
+    <Compile Include="Core\Factories\IGlobalStiffnessMatrixFactory.cs" />
     <Compile Include="Models\Contracts\IFrameLoad.cs" />
     <Compile Include="Models\Contracts\IFrameSection.cs" />
     <Compile Include="Models\Contracts\ILoad.cs" />
@@ -152,8 +167,8 @@
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXYPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXZPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedTorsion.cs" />
-    <Compile Include="Models\GlobalMatrix.cs" />
-    <Compile Include="Models\GlobalMatrixFrameElements.cs" />
+    <Compile Include="Models\GlobalStiffnessMatrix.cs" />
+    <Compile Include="Models\GlobalFrameStiffnessMatrix.cs" />
     <Compile Include="Models\LoadCases\LoadCase.cs" />
     <Compile Include="Models\Nodes\Node.cs" />
     <Compile Include="Models\Nodes\NodeLoads\Force\ForceXDirection.cs" />
@@ -187,8 +202,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\Assign\Springs\" />
-    <Folder Include="Commands\Assign\Supports\" />
     <Folder Include="Commands\Deleting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

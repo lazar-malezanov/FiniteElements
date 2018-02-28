@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FiniteElements.Models.Contracts;
 using FiniteElements.Models.Nodes;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace FiniteElements.Core
 {
@@ -12,6 +13,7 @@ namespace FiniteElements.Core
         private readonly List<IFrameSection> frameSEctions;
         private readonly List<IMaterial> materials;
         private readonly List<ILoadCase> loadCases;
+        private readonly List<Matrix<double>> globalStiffnessMatrices;
 
         public Database()
         {
@@ -20,6 +22,7 @@ namespace FiniteElements.Core
             this.frameSEctions = new List<IFrameSection>();
             this.materials = new List<IMaterial>();
             this.loadCases = new List<ILoadCase>();
+            this.globalStiffnessMatrices = new List<Matrix<double>>();
         }
 
         public List<Node> Nodes
@@ -59,6 +62,14 @@ namespace FiniteElements.Core
             get
             {
                 return this.loadCases; ;
+            }
+        }
+
+        public List<Matrix<double>> GlobalStiffnessMatrices
+        {
+            get
+            {
+                return this.globalStiffnessMatrices;
             }
         }
     }

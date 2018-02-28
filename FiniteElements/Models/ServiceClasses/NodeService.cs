@@ -13,8 +13,10 @@ namespace FiniteElements.Models.ServiceClasses
 
             result.AppendLine($"ID: {node.Number}");
             result.AppendLine($"Coordinates (X, Y, Z): {node.XCoord}, {node.YCoord}, {node.ZCoord}");
-            result.AppendLine($"Translational constraints (U, V, W): {node.UConstraint}, {node.VConstraint}, {node.WConstraint}");
-            result.AppendLine($"Rotational constraints (Rx, Ry, Rz): {node.RxConstraint}, {node.RyConstraint}, {node.RzConstraint}");
+            result.AppendLine($"Translational constraints (U, V, W): {node.XSupport}, {node.YSupport}, {node.ZSupport}");
+            result.AppendLine($"Rotational constraints (Rx, Ry, Rz): {node.RxSupport}, {node.RySupport}, {node.RzSupport}");
+            result.AppendLine($"Translational springs (U, V, W): {node.XSpring}, {node.YSpring}, {node.ZSpring}");
+            result.AppendLine($"Rotational springs (Rx, Ry, Rz): {node.RxSpring}, {node.RySpring}, {node.RzSpring}");
             result.AppendLine("----");
 
             return result.ToString();

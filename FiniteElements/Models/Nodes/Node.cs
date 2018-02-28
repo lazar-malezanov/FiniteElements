@@ -11,13 +11,20 @@ namespace FiniteElements.Models.Nodes
         private double zCoord;
         private double number;
         private List<ILoad> loads;
-        private bool uConstraint;
-        private bool vConstraint;
-        private bool wConstraint;
-        private bool rxConstraint;
-        private bool ryConstraint;
-        private bool rzConstraint;
 
+        private bool xSupport;
+        private bool ySupport;
+        private bool zSupport;
+        private bool rxSupport;
+        private bool rySupport;
+        private bool rzSupport;
+
+        private double xSpring;
+        private double ySpring;
+        private double zSpring;
+        private double rxSpring;
+        private double rySpring;
+        private double rzSpring;
 
         public Node(double xCoord, double yCoord, double zCoord = 0)
         {
@@ -94,81 +101,165 @@ namespace FiniteElements.Models.Nodes
             }
         }
 
-        public bool UConstraint
+        public bool XSupport
         {
             get
             {
-                return uConstraint;
+                return xSupport;
             }
 
             set
             {
-                uConstraint = value;
+                xSupport = value;
             }
         }
 
-        public bool VConstraint
+        public bool YSupport
         {
             get
             {
-                return vConstraint;
+                return ySupport;
             }
 
             set
             {
-                vConstraint = value;
+                ySupport = value;
             }
         }
 
-        public bool WConstraint
+        public bool ZSupport
         {
             get
             {
-                return wConstraint;
+                return zSupport;
             }
 
             set
             {
-                wConstraint = value;
+                zSupport = value;
             }
         }
 
-        public bool RxConstraint
+        public bool RxSupport
         {
             get
             {
-                return rxConstraint;
+                return rxSupport;
             }
 
             set
             {
-                rxConstraint = value;
+                rxSupport = value;
             }
         }
 
-        public bool RyConstraint
+        public bool RySupport
         {
             get
             {
-                return ryConstraint;
+                return rySupport;
             }
 
             set
             {
-                ryConstraint = value;
+                rySupport = value;
             }
         }
 
-        public bool RzConstraint
+        public bool RzSupport
         {
             get
             {
-                return rzConstraint;
+                return rzSupport;
             }
 
             set
             {
-                rzConstraint = value;
+                rzSupport = value;
+            }
+        }
+
+        public double XSpring
+        {
+            get
+            {
+                return this.xSpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring X").IsLessThan(0.0).Throw();
+                this.xSpring = value;
+            }
+        }
+
+        public double YSpring
+        {
+            get
+            {
+                return this.ySpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring Y").IsLessThan(0.0).Throw();
+                this.ySpring = value;
+            }
+        }
+
+        public double ZSpring
+        {
+            get
+            {
+                return this.zSpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring Z").IsLessThan(0.0).Throw();
+                this.zSpring = value;
+            }
+        }
+
+        public double RxSpring
+        {
+            get
+            {
+                return this.rxSpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring Rx").IsLessThan(0.0).Throw();
+                this.rxSpring = value;
+            }
+        }
+
+        public double RySpring
+        {
+            get
+            {
+                return this.rySpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring Ry").IsLessThan(0.0).Throw();
+                this.rySpring = value;
+            }
+        }
+
+        public double RzSpring
+        {
+            get
+            {
+                return this.rzSpring;
+            }
+
+            set
+            {
+                Guard.WhenArgument(value, "Spring Rz").IsLessThan(0.0).Throw();
+                this.rzSpring = value;
             }
         }
 

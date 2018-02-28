@@ -2,6 +2,8 @@
 using FiniteElements.Commands.Assign;
 using FiniteElements.Commands.Assign.Loads.NodalLoads;
 using FiniteElements.Commands.Assign.Releases;
+using FiniteElements.Commands.Assign.Springs;
+using FiniteElements.Commands.Assign.Supports;
 using FiniteElements.Commands.Contracts;
 using FiniteElements.Commands.Creating;
 using FiniteElements.Commands.Listing;
@@ -90,6 +92,22 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignMomentAroundXToNode>().Named("assignmomentaroundxtonode");
             this.Bind<ICommand>().To<AssignMomentAroundYToNode>().Named("assignmomentaroundytonode");
             this.Bind<ICommand>().To<AssignMomentAroundZToNode>().Named("assignmomentaroundztonode");
+
+            ////Supports at Nodes
+            this.Bind<ICommand>().To<AssignRxSupportToNode>().Named("assignrxsupporttonode");
+            this.Bind<ICommand>().To<AssignRySupportToNode>().Named("assignrysupporttonode");
+            this.Bind<ICommand>().To<AssignRzSupportToNode>().Named("assignrzsupporttonode");
+            this.Bind<ICommand>().To<AssignXSupportToNode>().Named("assignxsupporttonode");
+            this.Bind<ICommand>().To<AssignYSupportToNode>().Named("assignysupporttonode");
+            this.Bind<ICommand>().To<AssignZSupportToNode>().Named("assignzsupporttonode");
+
+            ////Springs at Nodes
+            this.Bind<ICommand>().To<AssignRxSpringToNode>().Named("assignrxspringtonode");
+            this.Bind<ICommand>().To<AssignRySpringToNode>().Named("assignryspringtonode");
+            this.Bind<ICommand>().To<AssignRzSpringToNode>().Named("assignrzspringtonode");
+            this.Bind<ICommand>().To<AssignXSpringToNode>().Named("assignxspringtonode");
+            this.Bind<ICommand>().To<AssignYSpringToNode>().Named("assignyspringtonode");
+            this.Bind<ICommand>().To<AssignZSpringToNode>().Named("assignzspringtonode");
 
             //Create Commands
             this.Bind<ICommand>().To<CreateFrameElement>().Named("createelement");

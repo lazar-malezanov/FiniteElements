@@ -1,17 +1,12 @@
 ﻿using FiniteElements.Core.Contracts;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Models
 {
-    internal class GlobalMatrixFrameElements : GlobalMatrix
+    internal class GlobalFrameStiffnessMatrix : GlobalStiffnessMatrix
     {
-        GlobalMatrixFrameElements(IDatabase dbctx) : base(dbctx) { }
+        public GlobalFrameStiffnessMatrix(IDatabase dbctx) : base(dbctx) { }
 
         public override Matrix<double> Assemble()
         {
