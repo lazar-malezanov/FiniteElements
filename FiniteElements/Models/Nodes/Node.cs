@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using FiniteElements.Models.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FiniteElements.Models.Nodes
 {
@@ -18,13 +19,15 @@ namespace FiniteElements.Models.Nodes
         private bool rxSupport;
         private bool rySupport;
         private bool rzSupport;
-
+        private List<bool> supports;
+        
         private double xSpring;
         private double ySpring;
         private double zSpring;
         private double rxSpring;
         private double rySpring;
         private double rzSpring;
+        private List<double> springs;
 
         public Node(double xCoord, double yCoord, double zCoord = 0)
         {
@@ -35,6 +38,10 @@ namespace FiniteElements.Models.Nodes
             this.XCoord = xCoord;
             this.YCoord = yCoord;
             this.ZCoord = zCoord;
+
+            this.supports = new List<bool>() { xSupport, ySupport, zSupport, rxSupport, rySupport, rzSupport };
+            this.springs = new List<double>() { xSpring, ySpring, zSpring, rxSpring, rySpring, rzSpring };
+            this.loads = new List<INodalLoad>();
         }
 
         public double XCoord
@@ -262,6 +269,22 @@ namespace FiniteElements.Models.Nodes
                 this.rzSpring = value;
             }
         }
+
+        public List<bool> Supports
+        {
+            get
+            {
+                return this.supports;
+            }
+        }
+
+        public List<double> Springs
+        {
+            get
+            {
+                return this.springs;
+            }
+        }       
 
         public int CompareTo(Node that)
         {

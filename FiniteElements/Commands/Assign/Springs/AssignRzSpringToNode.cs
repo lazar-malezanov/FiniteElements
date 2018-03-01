@@ -32,6 +32,10 @@ namespace FiniteElements.Commands.Assign.Springs
             Node node = base.dbctx.Nodes[nodeId];
 
             node.RzSpring = springValue;
+            if (!this.dbctx.Springs.Contains(node))
+            {
+                this.dbctx.Springs.Add(node);
+            }
             return $"Node with ID {node.Number} was assigned a spring (around Z axis) with a value of {springValue}.";
         }
     }

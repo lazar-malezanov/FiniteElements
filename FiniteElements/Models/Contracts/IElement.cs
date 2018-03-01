@@ -9,7 +9,7 @@ namespace FiniteElements.Models.Contracts
 
         IFrameSection SectionProp { get; set; }
 
-        List<ILoad> Loads { get; }
+        List<IFrameLoad> Loads { get; }
 
         double Number { get; set; }
     }

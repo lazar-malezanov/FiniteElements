@@ -671,7 +671,7 @@ namespace FiniteElements.Models.ServiceClasses
             return element.LocalMatrix + winkler;
         }
 
-        public static void AddLoad(IFrameElement element, ILoad load)
+        public static void AddLoad(IFrameElement element, IFrameLoad load)
         {
             Guard.WhenArgument(load, "load").IsNull().Throw();
             element.Loads.Add(load);

@@ -27,5 +27,31 @@ namespace FiniteElements.Models.ServiceClasses
             Guard.WhenArgument(load, "load").IsNull().Throw();
             node.Loads.Add(load);
         }
+
+        public static bool HasSupport(Node node)
+        {
+            if (node.Supports.Contains(true))
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool HasSpring(Node node)
+        {
+            if (node.Springs.Exists(x => x > 0.0))
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
 }

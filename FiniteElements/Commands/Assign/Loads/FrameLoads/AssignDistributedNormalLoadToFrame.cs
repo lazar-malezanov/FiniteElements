@@ -45,7 +45,7 @@ namespace FiniteElements.Commands.Assign
             IFrameElement frameElement = base.dbctx.FrameElements[elementId];
             ILoadCase loadCase = base.dbctx.LoadCases[loadCaseNumber];
 
-            ILoad frameLoad = this.factory.CreateDistributedNormalLoad(loadCase, frameElement.ElementLength, 0.0, 
+            IFrameLoad frameLoad = this.factory.CreateDistributedNormalLoad(loadCase, frameElement.ElementLength, 0.0, 
                 loadAtStart, loadAtEnd, loadStartsAt, loadEndsAt);
 
             FrameService.AddLoad(frameElement, frameLoad);

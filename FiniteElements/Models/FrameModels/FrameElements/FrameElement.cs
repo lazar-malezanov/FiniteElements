@@ -13,7 +13,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
         private Node node2;
         private IMaterial materialProp;
         private IFrameSection sectionProp;
-        private List<ILoad> loads;
+        private List<IFrameLoad> loads;
         private Matrix<double> localMatrix;
         private double number;
         private double elementLength;
@@ -42,7 +42,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             this.node1 = node1;
             this.node2 = node2;
 
-            this.loads = new List<ILoad>();
+            this.loads = new List<IFrameLoad>();
 
             double X1 = node1.XCoord;
             double X2 = node2.XCoord;
@@ -83,7 +83,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             }
         }
 
-        public List<ILoad> Loads
+        public List<IFrameLoad> Loads
         {
             get
             {

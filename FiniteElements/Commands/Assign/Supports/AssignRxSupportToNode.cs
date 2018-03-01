@@ -25,6 +25,10 @@ namespace FiniteElements.Commands.Assign.Supports
             Node node = base.dbctx.Nodes[nodeId];
 
             node.RxSupport = true;
+            if (!this.dbctx.Supports.Contains(node))
+            {
+                this.dbctx.Supports.Add(node);
+            }
             return $"Node with ID {node.Number} was assigned with an Rx support.";
         }
     }

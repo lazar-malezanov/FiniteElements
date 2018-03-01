@@ -43,7 +43,7 @@ namespace FiniteElements.Commands.Assign
             double gCoefficient = (frameElement.MaterialProp.EModule * frameElement.SectionProp.MomentOfInertiaY * frameElement.SectionProp.Mju)
                 / (frameElement.SectionProp.Area * frameElement.MaterialProp.GModule);
 
-            ILoad frameLoad = this.factory.CreateConcentratedMomentXZPlane(loadCase, frameElement.ElementLength, gCoefficient,
+            IFrameLoad frameLoad = this.factory.CreateConcentratedMomentXZPlane(loadCase, frameElement.ElementLength, gCoefficient,
                 loadValue, loadPosition);
 
             FrameService.AddLoad(frameElement, frameLoad);

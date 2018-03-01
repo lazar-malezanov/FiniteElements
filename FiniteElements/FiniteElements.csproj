@@ -59,8 +59,12 @@
     <Compile Include="Adapters\FrameSectionLibraryAdapter.cs" />
     <Compile Include="Adapters\MaterialAdapter.cs" />
     <Compile Include="Adapters\MaterialLibraryAdapter.cs" />
-    <Compile Include="Commands\AssembleGlobalFrameStiffnessMatrixCommand.cs" />
-    <Compile Include="Commands\AssembleGlobalLoadVectors.cs" />
+    <Compile Include="Commands\Assemble\AssembleLoadVectors\AssembleGlobalFrameLoadVectors.cs" />
+    <Compile Include="Commands\Assemble\AssembleLoadVectors\AssembleGlobalNodeLoadVectors.cs" />
+    <Compile Include="Commands\Assemble\AssembleStiffnessMatrices\AssembleGlobalFrameStiffnessMatrix.cs" />
+    <Compile Include="Commands\Assemble\AssembleLoadVectors\AssembleGlobalLoadVectors.cs" />
+    <Compile Include="Commands\Assemble\AssembleStiffnessMatrices\AssembleGlobalNodeStiffnessMatrix.cs" />
+    <Compile Include="Commands\Assemble\AssembleStiffnessMatrices\AssembleGlobalStiffnessMatrix.cs" />
     <Compile Include="Commands\Assign\AssignCommand.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXYPlaneToFrame.cs" />
     <Compile Include="Commands\Assign\Loads\FrameLoads\AssignConcentratedMomentXZPlaneToFrame.cs" />
@@ -113,6 +117,8 @@
     <Compile Include="Commands\Creating\CreateMaterial.cs" />
     <Compile Include="Commands\Creating\CreateNode.cs" />
     <Compile Include="Commands\Creating\CreateFrameSection.cs" />
+    <Compile Include="Commands\FormGlobalLoadVectors.cs" />
+    <Compile Include="Commands\FormGlobalStiffnessMatrix.cs" />
     <Compile Include="Commands\Listing\ListCommand.cs" />
     <Compile Include="Commands\Listing\ListFrameElements.cs" />
     <Compile Include="Commands\Listing\ListFrameSections.cs" />
@@ -131,7 +137,9 @@
     <Compile Include="Core\Contracts\IEngine.cs" />
     <Compile Include="Core\Factories\FrameFactories\FrameLoadFactory.cs" />
     <Compile Include="Core\Factories\FrameFactories\IFrameLoadFactory.cs" />
+    <Compile Include="Core\Factories\GlobalLoadVectorFactory.cs" />
     <Compile Include="Core\Factories\GlobalStiffnessMatrixFactory.cs" />
+    <Compile Include="Core\Factories\IGlobalLoadVectorFactory.cs" />
     <Compile Include="Core\Factories\IGlobalStiffnessMatrixFactory.cs" />
     <Compile Include="Models\Contracts\IFrameLoad.cs" />
     <Compile Include="Models\Contracts\IFrameSection.cs" />
@@ -170,9 +178,11 @@
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedMomentXZPlane.cs" />
     <Compile Include="Models\FrameModels\FrameLoads\TypesOfDistributedLoads\Moment\DistributedTorsion.cs" />
     <Compile Include="Models\GlobalLoadVector.cs" />
-    <Compile Include="Models\GlobalNodalLoadVectors.cs" />
+    <Compile Include="Models\GlobalLoadVectors\GlobalFrameLoadVectors.cs" />
+    <Compile Include="Models\GlobalLoadVectors\GlobalNodalLoadVectors.cs" />
+    <Compile Include="Models\GlobalStiffnessMatrices\GlobalNodeStiffnessMatrix.cs" />
     <Compile Include="Models\GlobalStiffnessMatrix.cs" />
-    <Compile Include="Models\GlobalFrameStiffnessMatrix.cs" />
+    <Compile Include="Models\GlobalStiffnessMatrices\GlobalFrameStiffnessMatrix.cs" />
     <Compile Include="Models\LoadCases\LoadCase.cs" />
     <Compile Include="Models\Nodes\Node.cs" />
     <Compile Include="Models\Nodes\NodeLoads\Force\ForceXDirection.cs" />

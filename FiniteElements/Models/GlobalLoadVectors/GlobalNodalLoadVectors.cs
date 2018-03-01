@@ -9,9 +9,9 @@ namespace FiniteElements.Models
     {
         public GlobalNodalLoadVectors(IDatabase dbctx) : base(dbctx) { }
 
-        public override List<Vector<double>> Assemble()
+        public override Dictionary<double, Vector<double>> Assemble()
         {
-            List<Vector<double>> globalLoadVectors = new List<Vector<double>>();
+            Dictionary<double, Vector<double>> globalLoadVectors = new Dictionary<double, Vector<double>>();
 
             foreach (var loadCase in this.dbctx.LoadCases)
             {
@@ -22,7 +22,7 @@ namespace FiniteElements.Models
                 {
                     foreach (var load in node.Loads)
                     {
-                        if (load.LoadCase == loadCase)
+                        if (load.LoadCase.Number == loadCase.Number)
                         {
                             globalVector[6 * (int)node.Number + 0] += load.LoadValue;
                             globalVector[6 * (int)node.Number + 1] += load.LoadValue;
@@ -34,7 +34,7 @@ namespace FiniteElements.Models
                     }                   
                 }
 
-                globalLoadVectors.Add(globalVector);
+                globalLoadVectors.Add(loadCase.Number, globalVector);
             }
 
             return globalLoadVectors;

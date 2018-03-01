@@ -1,4 +1,7 @@
 ﻿using FiniteElements.Adapters;
+using FiniteElements.Commands;
+using FiniteElements.Commands.Assemble.AssembleLoadVectors;
+using FiniteElements.Commands.Assemble.AssembleStiffnessMatrices;
 using FiniteElements.Commands.Assign;
 using FiniteElements.Commands.Assign.Loads.NodalLoads;
 using FiniteElements.Commands.Assign.Releases;
@@ -48,6 +51,15 @@ namespace FiniteElements.Container
             this.Bind<IExternalMaterialLibrary>().To<MaterialLibraryAdapter>().InSingletonScope();
             this.Bind<IFrameSectionLibrary>().To<FrameSectionLibrary>().InSingletonScope();
             this.Bind<IMaterialLibrary>().To<MaterialLibrary>().InSingletonScope();
+
+            //Assemble Commands
+            ////Assemble Load Vectors
+            this.Bind<ICommand>().To<AssembleGlobalFrameLoadVectors>().Named("assembleglobalframeloadvectors");
+            this.Bind<ICommand>().To<AssembleGlobalNodeLoadVectors>().Named("assembleglobalnodeloadvectors");
+
+            ////Assemble Stiffness Matrix
+            this.Bind<ICommand>().To<AssembleGlobalFrameStiffnessMatrix>().Named("assembleglobalframestiffnessmatrix");
+            this.Bind<ICommand>().To<AssembleGlobalNodeStiffnessMatrix>().Named("assembleglobalnodestiffnessmatrix");
 
             //Assign Commands
             this.Bind<ICommand>().To<AssignFrameSection>().Named("assignsection");
@@ -126,7 +138,11 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<ShowFrameElement>().Named("showframeelement");
             this.Bind<ICommand>().To<ShowFrameSection>().Named("showframesection");
             this.Bind<ICommand>().To<ShowMaterial>().Named("showmaterial");
-            this.Bind<ICommand>().To<ShowNode>().Named("shownode");           
+            this.Bind<ICommand>().To<ShowNode>().Named("shownode");
+
+            //Form Global Load Vectors
+            this.Bind<ICommand>().To<FormGlobalLoadVectors>().Named("formgloballoadvectors");
+            this.Bind<ICommand>().To<FormGlobalStiffnessMatrix>().Named("formglobalstiffnessmatrix");
         }
     }
 }
