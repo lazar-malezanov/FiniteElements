@@ -27,6 +27,10 @@ namespace FiniteElements.Core.Contracts
 
         Dictionary<double, Vector<double>> GlobalNodeLoadVectors { get; set; }
 
+        Dictionary<double, Vector<double>> ResultNodalDisplacementVectors { get; set; }
+
+        Dictionary<double, Vector<double>> ResultNodalReactionVectors { get; set; }
+
         List<IMaterial> Materials { get; }
 
         List<ILoadCase> LoadCases { get; }

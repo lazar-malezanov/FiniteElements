@@ -20,6 +20,8 @@ namespace FiniteElements.Core
         private Dictionary<double, Vector<double>> globalLoadVectors;
         private Dictionary<double, Vector<double>> globalFrameLoadVectors;
         private Dictionary<double, Vector<double>> globalNodeLoadVectors;
+        private Dictionary<double, Vector<double>> resultNodalDisplacementVectors;
+        private Dictionary<double, Vector<double>> resultNodalReactionVectors;
 
         public Database()
         {
@@ -34,6 +36,8 @@ namespace FiniteElements.Core
             this.globalLoadVectors = new Dictionary<double, Vector<double>>();
             this.globalFrameLoadVectors = new Dictionary<double, Vector<double>>();
             this.globalNodeLoadVectors = new Dictionary<double, Vector<double>>();
+            this.resultNodalDisplacementVectors = new Dictionary<double, Vector<double>>();
+            this.resultNodalReactionVectors = new Dictionary<double, Vector<double>>();
         }
 
         public List<Node> Nodes
@@ -149,6 +153,32 @@ namespace FiniteElements.Core
             set
             {
                 this.globalStiffnessMatrix = value;
+            }
+        }
+
+        public Dictionary<double, Vector<double>> ResultNodalDisplacementVectors
+        {
+            get
+            {
+                return this.resultNodalDisplacementVectors;
+            }
+
+            set
+            {
+                this.resultNodalDisplacementVectors = value;
+            }
+        }
+
+        public Dictionary<double, Vector<double>> ResultNodalReactionVectors
+        {
+            get
+            {
+                return this.resultNodalReactionVectors;
+            }
+
+            set
+            {
+                this.resultNodalReactionVectors = value;
             }
         }
     }

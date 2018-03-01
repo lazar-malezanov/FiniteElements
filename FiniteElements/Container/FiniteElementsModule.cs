@@ -10,7 +10,9 @@ using FiniteElements.Commands.Assign.Supports;
 using FiniteElements.Commands.Contracts;
 using FiniteElements.Commands.Creating;
 using FiniteElements.Commands.Listing;
+using FiniteElements.Commands.Listing.Results;
 using FiniteElements.Commands.Showing;
+using FiniteElements.Commands.Solvers;
 using FiniteElements.ContractsForExternalLibraries;
 using FiniteElements.Core;
 using FiniteElements.Core.Contracts;
@@ -32,6 +34,8 @@ namespace FiniteElements.Container
             this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
             this.Bind<IElementFactory>().To<ElementFactory>().InSingletonScope();
             this.Bind<IFrameLoadFactory>().To<FrameLoadFactory>().InSingletonScope();
+            this.Bind<IGlobalLoadVectorFactory>().To<GlobalLoadVectorFactory>().InSingletonScope();
+            this.Bind<IGlobalStiffnessMatrixFactory>().To<GlobalStiffnessMatrixFactory>().InSingletonScope();
 
             //Providers
             this.Bind<IParser>().To<CommandParser>().InSingletonScope();
@@ -140,9 +144,20 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<ShowMaterial>().Named("showmaterial");
             this.Bind<ICommand>().To<ShowNode>().Named("shownode");
 
+            //Generate local stiffness matrices
+            this.Bind<ICommand>().To<GenerateLocalFrameStiffnessMatrices>().Named("generatelocalframestiffnessmatrices");
+            this.Bind<ICommand>().To<GenerateGlobalFrameStiffnessMatrices>().Named("generateglobalframestiffnessmatrices");
+
             //Form Global Load Vectors
             this.Bind<ICommand>().To<FormGlobalLoadVectors>().Named("formgloballoadvectors");
             this.Bind<ICommand>().To<FormGlobalStiffnessMatrix>().Named("formglobalstiffnessmatrix");
+
+            //Solvers
+            ////Static solver
+            this.Bind<ICommand>().To<StaticSolver>().Named("staticsolver");
+
+            //Results
+            this.Bind<ICommand>().To<ListDisplacements>().Named("listdisplacements");
         }
     }
 }

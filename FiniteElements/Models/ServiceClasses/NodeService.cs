@@ -17,6 +17,11 @@ namespace FiniteElements.Models.ServiceClasses
             result.AppendLine($"Rotational constraints (Rx, Ry, Rz): {node.RxSupport}, {node.RySupport}, {node.RzSupport}");
             result.AppendLine($"Translational springs (U, V, W): {node.XSpring}, {node.YSpring}, {node.ZSpring}");
             result.AppendLine($"Rotational springs (Rx, Ry, Rz): {node.RxSpring}, {node.RySpring}, {node.RzSpring}");
+            foreach (var load in node.Loads)
+            {
+                result.AppendLine($"{load.LoadCase.Name} Loads: {load.Type} {load.LoadValue}");
+            }
+            
             result.AppendLine("----");
 
             return result.ToString();

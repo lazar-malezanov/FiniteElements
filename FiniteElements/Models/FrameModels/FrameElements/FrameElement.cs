@@ -15,6 +15,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
         private IFrameSection sectionProp;
         private List<IFrameLoad> loads;
         private Matrix<double> localMatrix;
+        private Matrix<double> globalMatrix;
         private double number;
         private double elementLength;
         private double alfa;
@@ -147,6 +148,19 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             set
             {
                 this.localMatrix = value;
+            }
+        }
+
+        public Matrix<double> GlobalMatrix
+        {
+            get
+            {
+                return this.globalMatrix;
+            }
+
+            set
+            {
+                this.globalMatrix = value;
             }
         }
 

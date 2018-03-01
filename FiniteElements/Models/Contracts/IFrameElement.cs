@@ -15,6 +15,8 @@ namespace FiniteElements.Models.Contracts
 
         Matrix<double> LocalMatrix { get; set; }
 
+        Matrix<double> GlobalMatrix { get; set; }
+
         bool TorsionReleaseNode1 { get; set; }
 
         bool MomentAroundYReleaseNode1 { get; set; }
