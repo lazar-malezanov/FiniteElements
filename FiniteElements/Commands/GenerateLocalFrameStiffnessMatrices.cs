@@ -2,11 +2,7 @@
 using FiniteElements.Commands.Contracts;
 using FiniteElements.Core.Contracts;
 using FiniteElements.Models.ServiceClasses;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Commands
 {

@@ -1,7 +1,6 @@
 ﻿using Bytes2you.Validation;
 using FiniteElements.Models.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FiniteElements.Models.Nodes
 {

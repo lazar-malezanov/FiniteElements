@@ -24,12 +24,14 @@ namespace FiniteElements.Models
                     {
                         if (load.LoadCase.Number == loadCase.Number)
                         {
-                            globalVector[6 * (int)node.Number + 0] += load.LoadValue;
-                            globalVector[6 * (int)node.Number + 1] += load.LoadValue;
-                            globalVector[6 * (int)node.Number + 2] += load.LoadValue;
-                            globalVector[6 * (int)node.Number + 3] += load.LoadValue;
-                            globalVector[6 * (int)node.Number + 4] += load.LoadValue;
-                            globalVector[6 * (int)node.Number + 5] += load.LoadValue;
+                            Vector<double> generatedLoad = load.GenerateLoad();
+
+                            globalVector[6 * (int)node.Number + 0] += generatedLoad[0];
+                            globalVector[6 * (int)node.Number + 1] += generatedLoad[1];
+                            globalVector[6 * (int)node.Number + 2] += generatedLoad[2];
+                            globalVector[6 * (int)node.Number + 3] += generatedLoad[3];
+                            globalVector[6 * (int)node.Number + 4] += generatedLoad[4];
+                            globalVector[6 * (int)node.Number + 5] += generatedLoad[5];
                         }
                     }                   
                 }

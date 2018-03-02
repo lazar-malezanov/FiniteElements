@@ -3,9 +3,6 @@ using FiniteElements.Models.Contracts;
 using FiniteElements.Models.LoadCases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Commands.Creating
 {
