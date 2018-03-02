@@ -3,6 +3,8 @@ using FiniteElements.Commands;
 using FiniteElements.Commands.Assemble.AssembleLoadVectors;
 using FiniteElements.Commands.Assemble.AssembleStiffnessMatrices;
 using FiniteElements.Commands.Assign;
+using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.ConcentratedLoad;
+using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.DistributedLoad;
 using FiniteElements.Commands.Assign.Loads.NodalLoads;
 using FiniteElements.Commands.Assign.Releases;
 using FiniteElements.Commands.Assign.Springs;
@@ -70,6 +72,7 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignMaterialToFrameElement>().Named("assignmaterial");
 
             ////Concentrated Loads
+            //////Local
             this.Bind<ICommand>().To<AssignConcentratedMomentXYPlaneToFrame>().Named("assignconcentratedmomentxyplanetoframe");
             this.Bind<ICommand>().To<AssignConcentratedMomentXZPlaneToFrame>().Named("assignconcentratedmomentxzplanetoframe");
             this.Bind<ICommand>().To<AssignConcentratedNormalLoadToFrame>().Named("assignconcentratednormalloadtoframe");
@@ -77,13 +80,24 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignConcentratedShearLoadXZPlaneToFrame>().Named("assignconcentratedshearloadxzplanetoframe");
             this.Bind<ICommand>().To<AssignConcentratedTorsionToFrame>().Named("assignconcentratedtorsiontoframe");
 
+            //////Global
+            this.Bind<ICommand>().To<AssignConcentratedLoadGlobalXDirection>().Named("assignconcentratedloadglobalxdirection");
+            this.Bind<ICommand>().To<AssignConcentratedLoadGlobalYDirection>().Named("assignconcentratedloadglobalydirection");
+            this.Bind<ICommand>().To<AssignConcentratedLoadGlobalZDirection>().Named("assignconcentratedloadglobalzdirection");
+
             ////Distributed Loads
+            //////Local
             this.Bind<ICommand>().To<AssignDistributedMomentXYPlaneToFrame>().Named("assigndistributedmomentxyplanetoframe");
             this.Bind<ICommand>().To<AssignDistributedMomentXZPlaneToFrame>().Named("assigndistributedmomentxzplanetoframe");
             this.Bind<ICommand>().To<AssignDistributedNormalLoadToFrame>().Named("assigndistributednormalloadtoframe");
             this.Bind<ICommand>().To<AssignDistributedShearLoadXYPlaneToFrame>().Named("assigndistributedshearloadxyplanetoframe");
             this.Bind<ICommand>().To<AssignDistributedShearLoadXZPlaneToFrame>().Named("assigndistributedshearloadxzplanetoframe");
             this.Bind<ICommand>().To<AssignDistributedTorsionToFrame>().Named("assigndistributedtorsiontoframe");
+
+            //////Global
+            this.Bind<ICommand>().To<AssignDistributedLoadGlobalXDirection>().Named("assigndistributedloadglobalxdirection");
+            this.Bind<ICommand>().To<AssignDistributedLoadGlobalYDirection>().Named("assigndistributedloadglobalydirection");
+            this.Bind<ICommand>().To<AssignDistributedLoadGlobalZDirection>().Named("assigndistributedloadglobalzdirection");
 
             ////Moment Releases
             this.Bind<ICommand>().To<AssignMomentAroundYReleaseNode1>().Named("assignmomentaroundyreleasenode1");

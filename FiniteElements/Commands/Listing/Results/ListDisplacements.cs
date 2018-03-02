@@ -14,7 +14,11 @@ namespace FiniteElements.Commands.Listing.Results
 
             foreach (var displacement in this.dbctx.ResultNodalDisplacementVectors)
             {
-                result.AppendLine($"{displacement:f2}");
+                for (int i = 0; i < displacement.Value.Count; i++)
+                {
+                    result.AppendLine($"{i}: {displacement.Value[i]:f5}");
+                }
+                
             }
 
             return result.ToString();

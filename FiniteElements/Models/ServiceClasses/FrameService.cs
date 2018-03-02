@@ -671,6 +671,67 @@ namespace FiniteElements.Models.ServiceClasses
             return element.LocalMatrix + winkler;
         }
 
+        public static Vector<double> InclinedLoadVector(IFrameElement element, Vector<double> load)
+        {
+            double alfa = element.Alfa;
+            double cosineAlfa = Math.Cos(alfa);
+            double sineAlfa = Math.Sin(alfa);
+
+            double c1 = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
+            double c2 = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
+            double c3 = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
+            double d = Math.Sqrt(c1 * c1 + c2 * c2);
+
+            double b1 = (-1) * c2 / d;
+            double b2 = c1 / d;
+            double b3 = 0.0;
+
+            double a1 = (-1) * c1 * c3 / d;
+            double a2 = (-1) * c2 * c3 / d;
+            double a3 = d;
+
+            Matrix<double> t;
+
+            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
+            {
+                double lambda;
+                if (element.Node2.ZCoord - element.Node1.ZCoord > 0)
+                {
+                    lambda = 1.0;
+                }
+
+                else
+                {
+                    lambda = -1.0;
+                }
+
+                t = SparseMatrix.OfArray(new double[,]
+                {
+                    //First row
+                    { 0.0, 0.0, lambda },
+                    //Second row
+                    { 0.0, 1.0, 0.0 },
+                    //Third row
+                    { (-1) * lambda, 0.0, 0.0 }
+                });
+            }
+
+            else
+            {
+                t = SparseMatrix.OfArray(new double[,]
+                {
+                    //First row
+                    { c1, c2, c3 },
+                    //Second row
+                    { b1, b2, b3 },
+                    //Third row
+                    { a1, a2, a3 }
+                });
+            }
+            Vector<double> result = load * t; //inverse?
+            return result;
+        }
+
         public static void AddLoad(IFrameElement element, IFrameLoad load)
         {
             Guard.WhenArgument(load, "load").IsNull().Throw();
