@@ -82,7 +82,7 @@ namespace FiniteElements.Models.FrameModels.FrameLoads.TypesOfDistributedLoads.M
             double m1 = m11 + m12 + m13;
             double m2 = m21 + m22 + m23;
 
-            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, 0.0, q1, 0.0, m1, 0.0, 0.0, 0.0, q2, 0.0, m2, 0.0 });
+            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, 0.0, -q1, 0.0, m1, 0.0, 0.0, 0.0, -q2, 0.0, m2, 0.0 });
         }
 
         public override string Type

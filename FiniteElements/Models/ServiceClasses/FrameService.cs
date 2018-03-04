@@ -728,7 +728,7 @@ namespace FiniteElements.Models.ServiceClasses
                     { a1, a2, a3 }
                 });
             }
-            Vector<double> result = load * t; //inverse?
+            Vector<double> result = t.Inverse() * load; //inverse?
             return result;
         }
 

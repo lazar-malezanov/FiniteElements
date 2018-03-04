@@ -11,7 +11,7 @@ namespace FiniteElements.Models.Nodes.NodeLoads.Moment
 
         public override Vector<double> GenerateLoad()
         {
-            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, this.loadValue });
+            return Vector<double>.Build.SparseOfArray(new double[] { 0.0, 0.0, 0.0, 0.0, this.loadValue, 0.0 });
         }
 
         public override string Type
