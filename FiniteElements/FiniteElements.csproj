@@ -133,6 +133,7 @@
     <Compile Include="Commands\Listing\ListMaterials.cs" />
     <Compile Include="Commands\Listing\ListNodes.cs" />
     <Compile Include="Commands\Listing\Results\ListDisplacements.cs" />
+    <Compile Include="Commands\Listing\Results\ListReactions.cs" />
     <Compile Include="Commands\Showing\ShowCommand.cs" />
     <Compile Include="Commands\Showing\ShowFrameElement.cs" />
     <Compile Include="Commands\Showing\ShowFrameSection.cs" />

@@ -62,19 +62,19 @@ namespace FiniteElements.Models.ServiceClasses
             if (element.MomentAroundZReleaseNode1 == false && element.MomentAroundZReleaseNode2 == false
                 && element.ShearYReleaseNode1 == false && element.ShearYReleaseNode2 == false)
             {
-                index22 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentZ);
-                index26 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentZ);
-                index28 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentZ);
-                index212 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentZ);
+                index22 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentZ);
+                index26 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentZ);
+                index28 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentZ);
+                index212 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentZ);
 
                 index66 = ((4.0 * elementLength * eModule * momentZ * gModule * area) / (elementLength * elementLength * gModule * area + mju * 12.0 * eModule * momentZ))
                 + ((12.0 * mju * eModule * eModule * momentZ * momentZ) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentZ));
-                index68 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentZ);
+                index68 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentZ);
                 index612 = ((2.0 * elementLength * eModule * momentZ * gModule * area) / (elementLength * elementLength * gModule * area + 12.0 * mju * eModule * momentZ))
                     - ((12.0 * mju * eModule * eModule * momentZ * momentZ) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentZ));
 
-                index88 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentZ);
-                index812 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentZ);
+                index88 = (12.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentZ);
+                index812 = (6.0 * eModule * momentZ * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentZ);
 
                 index1212 = ((4.0 * elementLength * eModule * momentZ * gModule * area) / (elementLength * elementLength * gModule * area + mju * 12.0 * eModule * momentZ))
                + ((12.0 * mju * eModule * eModule * momentZ * momentZ) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentZ));
@@ -263,19 +263,19 @@ namespace FiniteElements.Models.ServiceClasses
             if (element.MomentAroundYReleaseNode1 == false && element.MomentAroundYReleaseNode2 == false
                 && element.ShearZReleaseNode1 == false && element.ShearZReleaseNode2 == false)
             {
-                index33 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentY);
-                index35 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentY);
-                index39 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentY);
-                index311 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentY);
+                index33 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentY);
+                index35 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentY);
+                index39 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentY);
+                index311 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentY);
 
                 index55 = ((4.0 * elementLength * eModule * momentY * gModule * area) / (elementLength * elementLength * gModule * area + mju * 12.0 * eModule * momentY))
                + ((12.0 * mju * eModule * eModule * momentY * momentY) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentY));
-                index59 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentY);
+                index59 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentY);
                 index511 = ((2.0 * elementLength * eModule * momentY * gModule * area) / (elementLength * elementLength * gModule * area + 12.0 * mju * eModule * momentY))
                     - ((12.0 * mju * eModule * eModule * momentY * momentY) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentY));
 
-                index99 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12 * eModule * momentY);
-                index911 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12 * eModule * momentY);
+                index99 = (12.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength * elementLength + mju * elementLength * 12.0 * eModule * momentY);
+                index911 = (6.0 * eModule * momentY * gModule * area) / (gModule * area * elementLength * elementLength + mju * 12.0 * eModule * momentY);
 
                 index1111 = ((4.0 * elementLength * eModule * momentY * gModule * area) / (elementLength * elementLength * gModule * area + mju * 12.0 * eModule * momentY))
                 + ((12.0 * mju * eModule * eModule * momentY * momentY) / (elementLength * elementLength * elementLength * gModule * area + 12.0 * elementLength * mju * eModule * momentY));
@@ -545,97 +545,7 @@ namespace FiniteElements.Models.ServiceClasses
 
         public static Matrix<double> GenerateGlobalMatrix(IFrameElement element)
         {
-            double alfa = element.Alfa;
-            double cosineAlfa = Math.Cos(alfa);
-            double sineAlfa = Math.Sin(alfa);
-
-            double c1 = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
-            double c2 = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
-            double c3 = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
-            double d = Math.Sqrt(c1 * c1 + c2 * c2);
-
-            double b1 = (-1) * c2 / d;
-            double b2 = c1 / d;
-            double b3 = 0.0;
-
-            double a1 = (-1) * c1 * c3 / d;
-            double a2 = (-1) * c2 * c3 / d;
-            double a3 = d;
-
-            Matrix<double> t;
-
-            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
-            {
-                double lambda;
-                if (element.Node2.ZCoord - element.Node1.ZCoord > 0)
-                {
-                    lambda = 1.0;
-                }
-
-                else
-                {
-                    lambda = -1.0;
-                }
-
-                t = SparseMatrix.OfArray(new double[,]
-                {
-                    //First row
-                    { 0.0, 0.0, lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Second row
-                    { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Third row
-                    { (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Fourth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Fifth row
-                    { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Sixth row
-                    { 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Seventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, lambda, 0.0, 0.0, 0.0 },
-                    //Eighth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Ninth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Tenth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, lambda },
-                    //Eleventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 },
-                    //Twelfth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1) * lambda, 0.0, 0.0 }
-                });
-            }
-
-            else
-            {
-                t = SparseMatrix.OfArray(new double[,]
-                {
-                    //First row
-                    { c1, c2, c3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-                    //Second row
-                    { b1, b2, b3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Third row
-                    { a1, a2, a3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Fourth row
-                    { 0.0, 0.0, 0.0, c1, c2, c3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Fifth row
-                    { 0.0, 0.0, 0.0, b1, b2, b3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Sixth row
-                    { 0.0, 0.0, 0.0, a1, a2, a3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                    //Seventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, c1, c2, c3, 0.0, 0.0, 0.0 },
-                    //Eighth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, b1, b2, b3, 0.0, 0.0, 0.0 },
-                    //Ninth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, a1, a2, a3, 0.0, 0.0, 0.0 },
-                    //Tenth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, c1, c2, c3 },
-                    //Eleventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, b1, b2, b3 },
-                    //Twelfth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, a1, a2, a3 }
-                });
-            }
+            Matrix<double> t = TransformationMatrix(element);
 
             return t.Transpose() * element.LocalMatrix * t;
         }
@@ -674,35 +584,36 @@ namespace FiniteElements.Models.ServiceClasses
         public static Vector<double> InclinedLoadVector(IFrameElement element, Vector<double> load)
         {
             double alfa = element.Alfa;
+
             double cosineAlfa = Math.Cos(alfa);
             double sineAlfa = Math.Sin(alfa);
 
-            double c1 = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
-            double c2 = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
-            double c3 = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
+            double c1 = -(element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
+            double c2 = -(element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
+            double c3 = -(element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
             double d = Math.Sqrt(c1 * c1 + c2 * c2);
 
-            double b1 = (-1) * c2 / d;
-            double b2 = c1 / d;
+            double b1 = (1) * c2 / d;
+            double b2 = -c1 / d;
             double b3 = 0.0;
 
-            double a1 = (-1) * c1 * c3 / d;
-            double a2 = (-1) * c2 * c3 / d;
-            double a3 = d;
+            double a1 = (1) * c1 * c3 / d;
+            double a2 = (1) * c2 * c3 / d;
+            double a3 = -d;
 
             Matrix<double> t;
-
+            //Should be ok, but it also should be checked!
             if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
             {
                 double lambda;
                 if (element.Node2.ZCoord - element.Node1.ZCoord > 0)
                 {
-                    lambda = 1.0;
+                    lambda = -1.0;
                 }
 
                 else
                 {
-                    lambda = -1.0;
+                    lambda = 1.0;
                 }
 
                 t = SparseMatrix.OfArray(new double[,]
@@ -712,7 +623,7 @@ namespace FiniteElements.Models.ServiceClasses
                     //Second row
                     { 0.0, 1.0, 0.0 },
                     //Third row
-                    { (-1) * lambda, 0.0, 0.0 }
+                    { (-1) * lambda, 0.0, 0.0 }                   
                 });
             }
 
@@ -724,11 +635,12 @@ namespace FiniteElements.Models.ServiceClasses
                     { c1, c2, c3 },
                     //Second row
                     { b1, b2, b3 },
-                    //Third row
+                    //Third row 
                     { a1, a2, a3 }
                 });
             }
-            Vector<double> result = t.Inverse() * load; //inverse?
+
+            Vector<double> result = t * load;
             return result;
         }
 
@@ -736,6 +648,118 @@ namespace FiniteElements.Models.ServiceClasses
         {
             Guard.WhenArgument(load, "load").IsNull().Throw();
             element.Loads.Add(load);
+        }
+
+        public static Matrix<double> TransformationMatrix(IFrameElement element)
+        {
+            double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
+            double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
+            double n = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
+            double d = Math.Sqrt(l * l + n * n);
+
+            double xP = ((element.Node1.XCoord + element.Node2.XCoord) / 2.0);
+            double yP = ((element.Node1.YCoord + element.Node2.YCoord) / 2.0);
+            double zP = ((element.Node1.ZCoord + element.Node2.ZCoord) / 2.0) + 1.0;
+
+            double pY = (-1.0) * l * m * (xP - element.Node1.XCoord) / d + d * (yP - element.Node1.YCoord)
+                - m * n * (zP - element.Node1.ZCoord) / d;
+
+            double pZ = (-1.0) * n * (xP - element.Node1.XCoord) / d + l * (zP - element.Node1.ZCoord) / d;
+
+            double p = Math.Sqrt(pY * pY + pZ * pZ);
+
+            double alfa;
+
+            if (p == 0)
+            {
+                alfa = element.Alfa + 3.0 * Math.PI / 2.0;
+            }
+
+            else
+            {
+                alfa = element.Alfa + Math.Acos(pY / p);
+            }
+
+            double cosineAlfa = Math.Cos(alfa);
+            double sineAlfa = Math.Sin(alfa);
+
+            double b1 = ((-1.0) * (l * m * cosineAlfa) / d - (n * sineAlfa) / d);
+            double b3 = ((l * sineAlfa) / d - (n * m * cosineAlfa) / d);
+            double b2 = d * cosineAlfa;
+
+            double a1 = ((l * m * sineAlfa) / d - (n * cosineAlfa) / d);
+            double a3 = ((l * cosineAlfa) / d + (n * m * sineAlfa) / d);
+            double a2 = (-1.0) * d * sineAlfa;
+
+            Matrix<double> t;
+
+            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.ZCoord - element.Node1.ZCoord == 0)
+            {
+                alfa = element.Alfa + Math.PI / 2.0;
+                cosineAlfa = Math.Cos(alfa);
+                sineAlfa = Math.Sin(alfa);
+
+                t = SparseMatrix.OfArray(new double[,]
+                {
+                    //First row
+                    { 0.0, m, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Second row
+                    { (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Third row
+                    { m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Fourth row
+                    { 0.0, 0.0, 0.0, 0.0, m, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Fifth row
+                    { 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Sixth row
+                    { 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Seventh row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m, 0.0, 0.0, 0.0, 0.0 },
+                    //Eighth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0 },
+                    //Ninth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0 },
+                    //Tenth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m, 0.0 },
+                    //Eleventh row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa },
+                    //Twelfth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa }
+                });
+            }
+
+            else
+            {
+                t = SparseMatrix.OfArray(new double[,]
+                {
+                    //First row
+                    { l, m, n, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+                    //Second row
+                    { b1, b2, b3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Third row
+                    { a1, a2, a3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Fourth row
+                    { 0.0, 0.0, 0.0, l, m, n, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Fifth row
+                    { 0.0, 0.0, 0.0, b1, b2, b3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Sixth row
+                    { 0.0, 0.0, 0.0, a1, a2, a3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    //Seventh row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, l, m, n, 0.0, 0.0, 0.0 },
+                    //Eighth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, b1, b2, b3, 0.0, 0.0, 0.0 },
+                    //Ninth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, a1, a2, a3, 0.0, 0.0, 0.0 },
+                    //Tenth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, l, m, n },
+                    //Eleventh row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, b1, b2, b3 },
+                    //Twelfth row
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, a1, a2, a3 }
+                });
+            }
+
+            return t;
         }
 
         public static string AsString(IFrameElement element)

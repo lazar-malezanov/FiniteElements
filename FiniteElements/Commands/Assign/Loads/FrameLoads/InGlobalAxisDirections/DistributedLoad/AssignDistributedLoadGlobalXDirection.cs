@@ -61,10 +61,10 @@ namespace FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections
                 startPointLoadVector[0], endPointLoadVector[0], loadStartsAt, loadEndsAt);
 
             IFrameLoad frameLoadLocalY = this.factory.CreateDistributedShearLoadXYPlane(loadCase, frameElement.ElementLength, gCoefficientY,
-                startPointLoadVector[1], endPointLoadVector[1], loadStartsAt, loadEndsAt);
+                startPointLoadVector[2], endPointLoadVector[2], loadStartsAt, loadEndsAt);
 
             IFrameLoad frameLoadLocalZ = this.factory.CreateDistributedShearLoadXZPlane(loadCase, frameElement.ElementLength, gCoefficientZ,
-                startPointLoadVector[2], endPointLoadVector[2], loadStartsAt, loadEndsAt);
+                startPointLoadVector[1], endPointLoadVector[1], loadStartsAt, loadEndsAt);
 
             FrameService.AddLoad(frameElement, frameLoadLocalX);
             FrameService.AddLoad(frameElement, frameLoadLocalY);

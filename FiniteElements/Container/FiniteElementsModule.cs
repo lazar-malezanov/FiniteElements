@@ -50,7 +50,7 @@ namespace FiniteElements.Container
             //Models
             this.Bind<IFrameElement>().To<FrameElement>().InSingletonScope();
             this.Bind<IFrameSection>().To<FrameSectionAdapter>().InSingletonScope();
-            this.Bind<IMaterial>().To<MaterialAdapter>().InSingletonScope();            
+            this.Bind<IMaterial>().To<MaterialAdapter>().InSingletonScope();
 
             //External Libraries and Adapters
             this.Bind<IExternalFrameSectionLibrary>().To<FrameSectionLibraryAdapter>().InSingletonScope();
@@ -151,7 +151,7 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<ListFrameSections>().Named("listframesections");
             this.Bind<ICommand>().To<ListMaterials>().Named("listmaterials");
             this.Bind<ICommand>().To<ListNodes>().Named("listnodes");
-            
+
             //Show Commands
             this.Bind<ICommand>().To<ShowFrameElement>().Named("showframeelement");
             this.Bind<ICommand>().To<ShowFrameSection>().Named("showframesection");
@@ -172,6 +172,7 @@ namespace FiniteElements.Container
 
             //Results
             this.Bind<ICommand>().To<ListDisplacements>().Named("listdisplacements");
+            this.Bind<ICommand>().To<ListReactions>().Named("listreactions");
         }
     }
 }

@@ -141,8 +141,8 @@ namespace FrameSections.Sections
             this.height = height;
             this.width = width;
             this.area = height * width;
-            this.momentOfInertiaY = height * height * height * width / 12.0;
-            this.momentOfInertiaZ = height * width * width * width / 12.0;
+            this.momentOfInertiaZ = height * height * height * width / 12.0;
+            this.momentOfInertiaY = height * width * width * width / 12.0;
 
             double a = 0.5 * Math.Max(height, width);
             double b = 0.5 * Math.Min(height, width);
