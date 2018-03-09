@@ -583,47 +583,158 @@ namespace FiniteElements.Models.ServiceClasses
 
         public static Vector<double> InclinedLoadVector(IFrameElement element, Vector<double> load)
         {
-            double alfa = element.Alfa;
+            //double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
+            //double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
+            //double n = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
+            //double d = Math.Sqrt(l * l + m * m);
+
+            //double xP;
+            //double yP;
+            //double zP;
+
+            //if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
+            //{
+            //    xP = element.Node1.XCoord + 1.0;
+            //    yP = element.Node1.YCoord;
+            //    zP = element.Node1.ZCoord;
+            //}
+
+            //else
+            //{
+            //    xP = element.Node1.XCoord;
+            //    yP = element.Node1.YCoord;
+            //    zP = element.Node1.ZCoord + 1.0;
+            //}
+
+            //double pY;
+            //double pZ;
+
+            //if (l == 0 && m == 0)
+            //{
+            //    pY = (yP - element.Node1.YCoord);
+
+            //    pZ = (-1) * n * (xP - element.Node1.XCoord);
+            //}
+
+            //else
+            //{
+            //    pY = (-1.0) * m * (xP - element.Node1.XCoord) / d + l * (yP - element.Node1.YCoord) / d;
+
+            //    pZ = (-1.0) * l * n * (xP - element.Node1.XCoord) / d + d * (zP - element.Node1.ZCoord)
+            //   - m * n * (yP - element.Node1.YCoord) / d;
+            //}
+
+            //double p = Math.Sqrt(pY * pY + pZ * pZ);
+
+            //double alfa = element.Alfa + Math.Acos(pY / p); ;
+
+            //double cosineAlfa = Math.Cos(alfa);
+            //double sineAlfa = Math.Sin(alfa);
+
+            //double b1 = ((-1.0) * (l * n * sineAlfa) / d - (m * cosineAlfa) / d);
+            //double b2 = ((l * cosineAlfa) / d - (n * m * sineAlfa) / d);
+            //double b3 = d * sineAlfa;
+
+            //double a1 = ((-1) * (l * n * cosineAlfa) / d + (m * sineAlfa) / d);
+            //double a2 = ((-1) * (l * sineAlfa) / d - (n * m * cosineAlfa) / d);
+            //double a3 = d * cosineAlfa;
+
+            //Matrix<double> t;
+
+            //if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
+            //{
+            //    t = SparseMatrix.OfArray(new double[,]
+            //    {
+            //        //First row
+            //        { 0.0, 0.0, n },
+            //        //Second row
+            //        { (-1.0) * n * sineAlfa, cosineAlfa, 0.0 },
+            //        //Third row
+            //        { (-1.0) * n * cosineAlfa, (-1.0) * sineAlfa, 0.0 },
+            //    });
+            //}
+
+            //else
+            //{
+            //    t = SparseMatrix.OfArray(new double[,]
+            //    {
+            //        //First row
+            //        { l, m, n},
+            //        //Second row
+            //        { b1, b2, b3},
+            //        //Third row
+            //        { a1, a2, a3}
+            //    });
+            //}
+
+            double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
+            double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
+            double n = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
+            double d = Math.Sqrt(l * l + m * m);
+
+            double xP;
+            double yP;
+            double zP;
+
+            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
+            {
+                xP = element.Node1.XCoord + 1.0;
+                yP = element.Node1.YCoord;
+                zP = element.Node1.ZCoord;
+            }
+
+            else
+            {
+                xP = element.Node1.XCoord;
+                yP = element.Node1.YCoord;
+                zP = element.Node1.ZCoord + 1.0;
+            }
+
+            double pY;
+            double pZ;
+
+            if (l == 0 && m == 0)
+            {
+                pY = n * (xP - element.Node1.XCoord);
+
+                pZ = (yP - element.Node1.YCoord);
+            }
+
+            else
+            {
+                pY = (-1.0) * l * n * (xP - element.Node1.XCoord) / d + d * (zP - element.Node1.ZCoord)
+               - m * n * (yP - element.Node1.YCoord) / d;
+
+                pZ = m * (xP - element.Node1.XCoord) / d - l * (yP - element.Node1.YCoord) / d;
+            }
+
+            double p = Math.Sqrt(pY * pY + pZ * pZ);
+
+            double alfa = element.Alfa + Math.Acos(pY / p); ;
 
             double cosineAlfa = Math.Cos(alfa);
             double sineAlfa = Math.Sin(alfa);
 
-            double c1 = -(element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
-            double c2 = -(element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
-            double c3 = -(element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
-            double d = Math.Sqrt(c1 * c1 + c2 * c2);
+            double b1 = ((-1.0) * (l * n * cosineAlfa) / d + (m * sineAlfa) / d);
+            double b2 = ((-1) * (l * sineAlfa) / d - (n * m * cosineAlfa) / d);
+            double b3 = d * cosineAlfa;
 
-            double b1 = (1) * c2 / d;
-            double b2 = -c1 / d;
-            double b3 = 0.0;
-
-            double a1 = (1) * c1 * c3 / d;
-            double a2 = (1) * c2 * c3 / d;
-            double a3 = -d;
+            double a1 = ((l * n * sineAlfa) / d + (m * cosineAlfa) / d);
+            double a2 = ((-1) * (l * cosineAlfa) / d + (n * m * sineAlfa) / d);
+            double a3 = (-1) * d * sineAlfa;
 
             Matrix<double> t;
-            //Should be ok, but it also should be checked!
+
             if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
             {
-                double lambda;
-                if (element.Node2.ZCoord - element.Node1.ZCoord > 0)
-                {
-                    lambda = -1.0;
-                }
-
-                else
-                {
-                    lambda = 1.0;
-                }
-
                 t = SparseMatrix.OfArray(new double[,]
                 {
                     //First row
-                    { 0.0, 0.0, lambda },
+                    { 0.0, 0.0, n },
                     //Second row
-                    { 0.0, 1.0, 0.0 },
+                    { n * cosineAlfa, sineAlfa, 0.0 },
                     //Third row
-                    { (-1) * lambda, 0.0, 0.0 }                   
+                    { (-1.0) * n * sineAlfa, cosineAlfa, 0.0 }
                 });
             }
 
@@ -632,10 +743,10 @@ namespace FiniteElements.Models.ServiceClasses
                 t = SparseMatrix.OfArray(new double[,]
                 {
                     //First row
-                    { c1, c2, c3 },
+                    { l, m, n},
                     //Second row
                     { b1, b2, b3 },
-                    //Third row 
+                    //Third row
                     { a1, a2, a3 }
                 });
             }
@@ -655,76 +766,89 @@ namespace FiniteElements.Models.ServiceClasses
             double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
             double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
             double n = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
-            double d = Math.Sqrt(l * l + n * n);
+            double d = Math.Sqrt(l * l + m * m);
 
-            double xP = ((element.Node1.XCoord + element.Node2.XCoord) / 2.0);
-            double yP = ((element.Node1.YCoord + element.Node2.YCoord) / 2.0);
-            double zP = ((element.Node1.ZCoord + element.Node2.ZCoord) / 2.0) + 1.0;
+            double xP;
+            double yP;
+            double zP;
 
-            double pY = (-1.0) * l * m * (xP - element.Node1.XCoord) / d + d * (yP - element.Node1.YCoord)
-                - m * n * (zP - element.Node1.ZCoord) / d;
-
-            double pZ = (-1.0) * n * (xP - element.Node1.XCoord) / d + l * (zP - element.Node1.ZCoord) / d;
-
-            double p = Math.Sqrt(pY * pY + pZ * pZ);
-
-            double alfa;
-
-            if (p == 0)
+            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
             {
-                alfa = element.Alfa + 3.0 * Math.PI / 2.0;
+                xP = element.Node1.XCoord + 1.0;
+                yP = element.Node1.YCoord;
+                zP = element.Node1.ZCoord;
             }
 
             else
             {
-                alfa = element.Alfa + Math.Acos(pY / p);
+                xP = element.Node1.XCoord;
+                yP = element.Node1.YCoord;
+                zP = element.Node1.ZCoord + 1.0;
             }
+
+            double pY;
+            double pZ;
+
+            if (l == 0 && m == 0)
+            {
+                pY = n * (xP - element.Node1.XCoord);
+
+                pZ = (yP - element.Node1.YCoord);
+            }
+
+            else
+            {
+                pY = (-1.0) * l * n * (xP - element.Node1.XCoord) / d + d * (zP - element.Node1.ZCoord)
+               - m * n * (yP - element.Node1.YCoord) / d;
+
+                pZ = m * (xP - element.Node1.XCoord) / d - l * (yP - element.Node1.YCoord) / d;
+            }
+
+            double p = Math.Sqrt(pY * pY + pZ * pZ);
+
+            double alfa = element.Alfa + Math.Acos(pY / p); ;
 
             double cosineAlfa = Math.Cos(alfa);
             double sineAlfa = Math.Sin(alfa);
 
-            double b1 = ((-1.0) * (l * m * cosineAlfa) / d - (n * sineAlfa) / d);
-            double b3 = ((l * sineAlfa) / d - (n * m * cosineAlfa) / d);
-            double b2 = d * cosineAlfa;
+            double b1 = ((-1.0) * (l * n * cosineAlfa) / d + (m * sineAlfa) / d);
+            double b2 = ((-1) * (l * sineAlfa) / d - (n * m * cosineAlfa) / d);
+            double b3 = d * cosineAlfa;
 
-            double a1 = ((l * m * sineAlfa) / d - (n * cosineAlfa) / d);
-            double a3 = ((l * cosineAlfa) / d + (n * m * sineAlfa) / d);
-            double a2 = (-1.0) * d * sineAlfa;
+            double a1 = ((l * n * sineAlfa) / d + (m * cosineAlfa) / d);
+            double a2 = ((-1) * (l * cosineAlfa) / d + (n * m * sineAlfa) / d);
+            double a3 = (-1) * d * sineAlfa;
 
             Matrix<double> t;
 
-            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.ZCoord - element.Node1.ZCoord == 0)
+            if (element.Node2.XCoord - element.Node1.XCoord == 0 && element.Node2.YCoord - element.Node1.YCoord == 0)
             {
-                alfa = element.Alfa + Math.PI / 2.0;
-                cosineAlfa = Math.Cos(alfa);
-                sineAlfa = Math.Sin(alfa);
-
                 t = SparseMatrix.OfArray(new double[,]
                 {
                     //First row
-                    { 0.0, m, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, n, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Second row
-                    { (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { n * cosineAlfa, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Third row
-                    { m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { (-1.0) * n * sineAlfa, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Fourth row
-                    { 0.0, 0.0, 0.0, 0.0, m, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, n, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Fifth row
-                    { 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, n * cosineAlfa, sineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Sixth row
-                    { 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, (-1.0) * n * sineAlfa, cosineAlfa, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                     //Seventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m, 0.0, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, n, 0.0, 0.0, 0.0 },
                     //Eighth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, n * cosineAlfa, sineAlfa, 0.0, 0.0, 0.0, 0.0 },
                     //Ninth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa, 0.0, 0.0, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * n * sineAlfa, cosineAlfa, 0.0, 0.0, 0.0, 0.0 },
                     //Tenth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m, 0.0 },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, n },
                     //Eleventh row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * m * cosineAlfa, 0.0, sineAlfa },
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, n * cosineAlfa, sineAlfa, 0.0 },
                     //Twelfth row
-                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, m * sineAlfa, 0.0, cosineAlfa }
+                    { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, (-1.0) * n * sineAlfa, cosineAlfa, 0.0 }
                 });
             }
 

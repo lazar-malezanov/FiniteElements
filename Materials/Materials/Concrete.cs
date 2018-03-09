@@ -333,6 +333,12 @@ namespace Materials.Materials
                 //                   fck[kN/m2]  fck,cube[kN/m2]  fcm[kN/m2]   fctm[kN/m2]  fctk0,05[kN/m2]  fctk0,95[kN/m2]  Ecm[kN/m2]        Ec1[kN/m2]      ec1[%.]     ecu1[%.]    ec2[%.]     ecu2[%.]    n[-]    ec3[%.]  ecu3[%.]
                 return concrete;
             }
+            else if (concreteType == "test")
+            {
+                concrete = new double[] { 90000.0, 105000.0, 98000.0, 5040.0, 3530.0, 6560.0, 29000.0, 35000000.0, 2.80, 2.8, 2.6, 2.6, 1.4, 2.3, 2.6 };
+                //                   fck[kN/m2]  fck,cube[kN/m2]  fcm[kN/m2]   fctm[kN/m2]  fctk0,05[kN/m2]  fctk0,95[kN/m2]  Ecm[kN/m2]        Ec1[kN/m2]      ec1[%.]     ecu1[%.]    ec2[%.]     ecu2[%.]    n[-]    ec3[%.]  ecu3[%.]
+                return concrete;
+            }
             else
             {
                 throw new ArgumentException("Invalid concrete type!");
