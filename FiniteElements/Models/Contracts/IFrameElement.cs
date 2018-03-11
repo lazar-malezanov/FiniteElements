@@ -1,5 +1,6 @@
 ﻿using FiniteElements.Models.Nodes;
 using MathNet.Numerics.LinearAlgebra;
+using System.Collections.Generic;
 
 namespace FiniteElements.Models.Contracts
 {
@@ -15,7 +16,11 @@ namespace FiniteElements.Models.Contracts
 
         Matrix<double> LocalMatrix { get; set; }
 
+        Matrix<double> TransformationMatrix { get; set; }
+
         Matrix<double> GlobalMatrix { get; set; }
+
+        Dictionary<int, Vector<double>> GeneratedLocalLoadVectors { get; set; }
 
         bool TorsionReleaseNode1 { get; set; }
 

@@ -15,6 +15,6 @@ namespace FiniteElements.Models
             this.dbctx = dbctx;
         }
 
-        public abstract Dictionary<double, Vector<double>> Assemble();
+        public abstract Dictionary<int, Vector<double>> Assemble();
     }
 }

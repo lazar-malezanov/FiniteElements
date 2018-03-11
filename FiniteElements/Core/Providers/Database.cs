@@ -16,12 +16,15 @@ namespace FiniteElements.Core
         private readonly List<IMaterial> materials;
         private readonly List<ILoadCase> loadCases;
         private readonly List<Matrix<double>> globalStiffnessMatrices;
+        private Matrix<double> globalNodeStiffnessMatrix;
         private Matrix<double> globalStiffnessMatrix;
-        private Dictionary<double, Vector<double>> globalLoadVectors;
-        private Dictionary<double, Vector<double>> globalFrameLoadVectors;
-        private Dictionary<double, Vector<double>> globalNodeLoadVectors;
-        private Dictionary<double, Vector<double>> resultNodalDisplacementVectors;
-        private Dictionary<double, Vector<double>> resultNodalReactionVectors;
+        private Matrix<double> globalStiffnessMatrixWithSupports;
+        private Dictionary<int, Vector<double>> globalLoadVectors;
+        private Dictionary<int, Vector<double>> globalFrameLoadVectors;
+        private Dictionary<int, Vector<double>> globalNodeLoadVectors;
+        private Dictionary<int, Vector<double>> resultNodalDisplacementVectors;
+        private Dictionary<int, Vector<double>> resultNodalReactionVectors;
+        private Dictionary<int, Vector<double>> resultInternalForceVectors;
 
         public Database()
         {
@@ -33,11 +36,11 @@ namespace FiniteElements.Core
             this.materials = new List<IMaterial>();
             this.loadCases = new List<ILoadCase>();
             this.globalStiffnessMatrices = new List<Matrix<double>>();
-            this.globalLoadVectors = new Dictionary<double, Vector<double>>();
-            this.globalFrameLoadVectors = new Dictionary<double, Vector<double>>();
-            this.globalNodeLoadVectors = new Dictionary<double, Vector<double>>();
-            this.resultNodalDisplacementVectors = new Dictionary<double, Vector<double>>();
-            this.resultNodalReactionVectors = new Dictionary<double, Vector<double>>();
+            this.globalLoadVectors = new Dictionary<int, Vector<double>>();
+            this.globalFrameLoadVectors = new Dictionary<int, Vector<double>>();
+            this.globalNodeLoadVectors = new Dictionary<int, Vector<double>>();
+            this.resultNodalDisplacementVectors = new Dictionary<int, Vector<double>>();
+            this.resultNodalReactionVectors = new Dictionary<int, Vector<double>>();
         }
 
         public List<Node> Nodes
@@ -104,7 +107,7 @@ namespace FiniteElements.Core
             }
         }
 
-        public Dictionary<double, Vector<double>> GlobalLoadVectors
+        public Dictionary<int, Vector<double>> GlobalLoadVectors
         {
             get
             {
@@ -117,7 +120,7 @@ namespace FiniteElements.Core
             }
         }
 
-        public Dictionary<double, Vector<double>> GlobalFrameLoadVectors
+        public Dictionary<int, Vector<double>> GlobalFrameLoadVectors
         {
             get
             {
@@ -130,7 +133,7 @@ namespace FiniteElements.Core
             }
         }
 
-        public Dictionary<double, Vector<double>> GlobalNodeLoadVectors
+        public Dictionary<int, Vector<double>> GlobalNodeLoadVectors
         {
             get
             {
@@ -140,6 +143,19 @@ namespace FiniteElements.Core
             set
             {
                 this.globalNodeLoadVectors = value;
+            }
+        }
+
+        public Matrix<double> GlobalNodeStiffnessMatrix
+        {
+            get
+            {
+                return this.globalNodeStiffnessMatrix;
+            }
+
+            set
+            {
+                this.globalNodeStiffnessMatrix = value;
             }
         }
 
@@ -156,7 +172,20 @@ namespace FiniteElements.Core
             }
         }
 
-        public Dictionary<double, Vector<double>> ResultNodalDisplacementVectors
+        public Matrix<double> GlobalStiffnessMatrixWithSupports
+        {
+            get
+            {
+                return this.globalStiffnessMatrixWithSupports;
+            }
+
+            set
+            {
+                this.globalStiffnessMatrixWithSupports = value;
+            }
+        }
+
+        public Dictionary<int, Vector<double>> ResultNodalDisplacementVectors
         {
             get
             {
@@ -169,7 +198,7 @@ namespace FiniteElements.Core
             }
         }
 
-        public Dictionary<double, Vector<double>> ResultNodalReactionVectors
+        public Dictionary<int, Vector<double>> ResultNodalReactionVectors
         {
             get
             {
@@ -179,6 +208,19 @@ namespace FiniteElements.Core
             set
             {
                 this.resultNodalReactionVectors = value;
+            }
+        }
+
+        public Dictionary<int, Vector<double>> ResultInternalForceVectors
+        {
+            get
+            {
+                return this.resultInternalForceVectors;
+            }
+
+            set
+            {
+                this.resultInternalForceVectors = value;
             }
         }
     }

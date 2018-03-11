@@ -11,6 +11,8 @@ namespace FiniteElements.Models.ServiceClasses
     {
         public static Matrix<double> GenerateLocalMatrix(IFrameElement element)
         {
+            Guard.WhenArgument(element, "element").IsNull().Throw();
+
             IMaterial materialProp = element.MaterialProp;
             IFrameSection sectionProp = element.SectionProp;
 
@@ -545,9 +547,29 @@ namespace FiniteElements.Models.ServiceClasses
 
         public static Matrix<double> GenerateGlobalMatrix(IFrameElement element)
         {
-            Matrix<double> t = TransformationMatrix(element);
+            Guard.WhenArgument(element, "element").IsNull().Throw();
+            return element.TransformationMatrix.Transpose() * element.LocalMatrix * element.TransformationMatrix;
+        }
 
-            return t.Transpose() * element.LocalMatrix * t;
+        public static Vector<double> InternalForces(IFrameElement element, Vector<double> globalDisplacementVector, int loadCaseNumber)
+        {
+            Vector<double> globalElementDisplacements = Vector<double>.Build.Sparse(12, 0.0);
+
+            globalElementDisplacements[0] += globalDisplacementVector[element.Node1.Number + 0];
+            globalElementDisplacements[1] += globalDisplacementVector[element.Node1.Number + 1];
+            globalElementDisplacements[2] += globalDisplacementVector[element.Node1.Number + 2];
+            globalElementDisplacements[3] += globalDisplacementVector[element.Node1.Number + 3];
+            globalElementDisplacements[4] += globalDisplacementVector[element.Node1.Number + 4];
+            globalElementDisplacements[5] += globalDisplacementVector[element.Node1.Number + 5];
+
+            globalElementDisplacements[6] += globalDisplacementVector[element.Node2.Number + 0];
+            globalElementDisplacements[7] += globalDisplacementVector[element.Node2.Number + 1];
+            globalElementDisplacements[8] += globalDisplacementVector[element.Node2.Number + 2];
+            globalElementDisplacements[9] += globalDisplacementVector[element.Node2.Number + 3];
+            globalElementDisplacements[10] += globalDisplacementVector[element.Node2.Number + 4];
+            globalElementDisplacements[11] += globalDisplacementVector[element.Node2.Number + 5];
+
+            return element.TransformationMatrix * globalElementDisplacements - element.GeneratedLocalLoadVectors[loadCaseNumber];
         }
 
         public static Matrix<double> AddWinklerConstant(IFrameElement element, double winklerConstant)
@@ -666,6 +688,8 @@ namespace FiniteElements.Models.ServiceClasses
             //        { a1, a2, a3}
             //    });
             //}
+            Guard.WhenArgument(element, "element").IsNull().Throw();
+            Guard.WhenArgument(load, "load").IsNull().Throw();
 
             double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
             double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
@@ -757,12 +781,25 @@ namespace FiniteElements.Models.ServiceClasses
 
         public static void AddLoad(IFrameElement element, IFrameLoad load)
         {
+            Guard.WhenArgument(element, "element").IsNull().Throw();
             Guard.WhenArgument(load, "load").IsNull().Throw();
             element.Loads.Add(load);
+
+            if (!element.GeneratedLocalLoadVectors.ContainsKey(load.LoadCase.Number))
+            {
+                element.GeneratedLocalLoadVectors.Add(load.LoadCase.Number, load.GenerateLoad());
+            }
+
+            else
+            {
+                element.GeneratedLocalLoadVectors[load.LoadCase.Number] += load.GenerateLoad();
+            }
         }
 
         public static Matrix<double> TransformationMatrix(IFrameElement element)
         {
+            Guard.WhenArgument(element, "element").IsNull().Throw();
+
             double l = (element.Node2.XCoord - element.Node1.XCoord) / element.ElementLength;
             double m = (element.Node2.YCoord - element.Node1.YCoord) / element.ElementLength;
             double n = (element.Node2.ZCoord - element.Node1.ZCoord) / element.ElementLength;
@@ -888,6 +925,8 @@ namespace FiniteElements.Models.ServiceClasses
 
         public static string AsString(IFrameElement element)
         {
+            Guard.WhenArgument(element, "element").IsNull().Throw();
+
             var result = new StringBuilder();
             string characters = "****";
 

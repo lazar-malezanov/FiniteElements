@@ -11,9 +11,9 @@ namespace FiniteElements.Models.GlobalLoadVectors
     {
         public GlobalFrameLoadVectors(IDatabase dbctx) : base(dbctx) { }
 
-        public override Dictionary<double, Vector<double>> Assemble()
+        public override Dictionary<int, Vector<double>> Assemble()
         {
-            Dictionary<double, Vector<double>> globalLoadVectors = new Dictionary<double, Vector<double>>();
+            Dictionary<int, Vector<double>> globalLoadVectors = new Dictionary<int, Vector<double>>();
 
             foreach (var loadCase in this.dbctx.LoadCases)
             {
@@ -26,8 +26,7 @@ namespace FiniteElements.Models.GlobalLoadVectors
                     {
                         if (load.LoadCase.Number == loadCase.Number)
                         {
-                            Vector<double> localLoadVector = load.GenerateLoad();
-                            Vector<double> globalLoadVector = FrameService.TransformationMatrix(frameElement).Transpose() * localLoadVector;
+                            Vector<double> globalLoadVector = frameElement.TransformationMatrix.Transpose() * frameElement.GeneratedLocalLoadVectors[load.LoadCase.Number];
 
                             double constant = Math.Pow(10.0, -10.0);
                             for (int i = 0; i < globalLoadVector.Count; i++)
@@ -35,19 +34,19 @@ namespace FiniteElements.Models.GlobalLoadVectors
                                 globalLoadVector[i] = Math.Round(globalLoadVector[i], 5);
                             }
 
-                            globalVector[6 * (int)frameElement.Node1.Number + 0] += globalLoadVector[0];
-                            globalVector[6 * (int)frameElement.Node1.Number + 1] += globalLoadVector[1];
-                            globalVector[6 * (int)frameElement.Node1.Number + 2] += globalLoadVector[2];
-                            globalVector[6 * (int)frameElement.Node1.Number + 3] += globalLoadVector[3];
-                            globalVector[6 * (int)frameElement.Node1.Number + 4] += globalLoadVector[4];
-                            globalVector[6 * (int)frameElement.Node1.Number + 5] += globalLoadVector[5];
+                            globalVector[6 * frameElement.Node1.Number + 0] += globalLoadVector[0];
+                            globalVector[6 * frameElement.Node1.Number + 1] += globalLoadVector[1];
+                            globalVector[6 * frameElement.Node1.Number + 2] += globalLoadVector[2];
+                            globalVector[6 * frameElement.Node1.Number + 3] += globalLoadVector[3];
+                            globalVector[6 * frameElement.Node1.Number + 4] += globalLoadVector[4];
+                            globalVector[6 * frameElement.Node1.Number + 5] += globalLoadVector[5];
 
-                            globalVector[6 * (int)frameElement.Node2.Number + 0] += globalLoadVector[6];
-                            globalVector[6 * (int)frameElement.Node2.Number + 1] += globalLoadVector[7];
-                            globalVector[6 * (int)frameElement.Node2.Number + 2] += globalLoadVector[8];
-                            globalVector[6 * (int)frameElement.Node2.Number + 3] += globalLoadVector[9];
-                            globalVector[6 * (int)frameElement.Node2.Number + 4] += globalLoadVector[10];
-                            globalVector[6 * (int)frameElement.Node2.Number + 5] += globalLoadVector[11];
+                            globalVector[6 * frameElement.Node2.Number + 0] += globalLoadVector[6];
+                            globalVector[6 * frameElement.Node2.Number + 1] += globalLoadVector[7];
+                            globalVector[6 * frameElement.Node2.Number + 2] += globalLoadVector[8];
+                            globalVector[6 * frameElement.Node2.Number + 3] += globalLoadVector[9];
+                            globalVector[6 * frameElement.Node2.Number + 4] += globalLoadVector[10];
+                            globalVector[6 * frameElement.Node2.Number + 5] += globalLoadVector[11];
                         }
                     }
                 }

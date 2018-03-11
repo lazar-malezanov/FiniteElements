@@ -17,19 +17,25 @@ namespace FiniteElements.Core.Contracts
 
         List<IFrameSection> FrameSections { get; }
 
-        List<Matrix<double>> GlobalStiffnessMatrices { get; }
+        List<Matrix<double>> GlobalStiffnessMatrices { get; } //From different elements
+
+        Matrix<double> GlobalNodeStiffnessMatrix { get; set; }
 
         Matrix<double> GlobalStiffnessMatrix { get; set; }
 
-        Dictionary<double, Vector<double>> GlobalLoadVectors { get; set; }
+        Matrix<double> GlobalStiffnessMatrixWithSupports { get; set; }
 
-        Dictionary<double, Vector<double>> GlobalFrameLoadVectors { get; set; }
+        Dictionary<int, Vector<double>> GlobalLoadVectors { get; set; }
 
-        Dictionary<double, Vector<double>> GlobalNodeLoadVectors { get; set; }
+        Dictionary<int, Vector<double>> GlobalFrameLoadVectors { get; set; }
 
-        Dictionary<double, Vector<double>> ResultNodalDisplacementVectors { get; set; }
+        Dictionary<int, Vector<double>> GlobalNodeLoadVectors { get; set; }
 
-        Dictionary<double, Vector<double>> ResultNodalReactionVectors { get; set; }
+        Dictionary<int, Vector<double>> ResultNodalDisplacementVectors { get; set; }
+
+        Dictionary<int, Vector<double>> ResultNodalReactionVectors { get; set; }
+
+        Dictionary<int, Vector<double>> ResultInternalForceVectors { get; set; }
 
         List<IMaterial> Materials { get; }
 

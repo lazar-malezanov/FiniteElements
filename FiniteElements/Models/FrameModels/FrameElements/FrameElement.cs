@@ -14,9 +14,11 @@ namespace FiniteElements.Models.FrameModels.FrameElements
         private IMaterial materialProp;
         private IFrameSection sectionProp;
         private List<IFrameLoad> loads;
+        private Dictionary<int, Vector<double>> generatedLocalLoadVectors;
         private Matrix<double> localMatrix;
+        private Matrix<double> transformationMatrix;
         private Matrix<double> globalMatrix;
-        private double number;
+        private int number;
         private double elementLength;
         private double alfa;
         
@@ -44,6 +46,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             this.node2 = node2;
 
             this.loads = new List<IFrameLoad>();
+            this.generatedLocalLoadVectors = new Dictionary<int, Vector<double>>();
 
             double X1 = node1.XCoord;
             double X2 = node2.XCoord;
@@ -91,8 +94,21 @@ namespace FiniteElements.Models.FrameModels.FrameElements
                 return this.loads;
             } 
         }
-       
-        public double Number
+
+        public Dictionary<int, Vector<double>> GeneratedLocalLoadVectors
+        {
+            get
+            {
+                return this.generatedLocalLoadVectors;
+            }
+
+            set
+            {
+                this.generatedLocalLoadVectors = value;
+            }
+        }
+
+        public int Number
         {
             get
             {
@@ -101,7 +117,6 @@ namespace FiniteElements.Models.FrameModels.FrameElements
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN();
                 this.number = value;
             }
         }
@@ -148,6 +163,19 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             set
             {
                 this.localMatrix = value;
+            }
+        }
+
+        public Matrix<double> TransformationMatrix
+        {
+            get
+            {
+                return this.transformationMatrix;
+            }
+
+            set
+            {
+                this.transformationMatrix = value;
             }
         }
 

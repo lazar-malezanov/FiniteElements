@@ -10,7 +10,7 @@ namespace FiniteElements.Adapters
         private double gModule;
         private string name;
         private string type;
-        private double number;
+        private int number;
 
         public MaterialAdapter(IMaterialFromLibrary materialFromLibrary)
         {
@@ -60,7 +60,7 @@ namespace FiniteElements.Adapters
             }           
         }
 
-        public double Number
+        public int Number
         {
             get
             {

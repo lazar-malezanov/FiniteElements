@@ -6,7 +6,7 @@ namespace FiniteElements.Models.LoadCases
     internal class LoadCase : ILoadCase
     {
         private string name;
-        private double number;
+        private int number;
 
         public LoadCase(string name)
         {
@@ -29,7 +29,7 @@ namespace FiniteElements.Models.LoadCases
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {
@@ -38,8 +38,7 @@ namespace FiniteElements.Models.LoadCases
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN().Throw();
-                Guard.WhenArgument(value, "number").IsLessThan(0.0).Throw();
+                Guard.WhenArgument(value, "number").IsLessThan(0).Throw();
                 this.number = value;
             }
         }

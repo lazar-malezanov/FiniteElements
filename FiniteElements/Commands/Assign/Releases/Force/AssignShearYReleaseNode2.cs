@@ -15,7 +15,7 @@ namespace FiniteElements.Commands.Assign.Releases
 
             try
             {
-                elementId = int.Parse(parameters[1]);
+                elementId = int.Parse(parameters[0]);
             }
             catch
             {

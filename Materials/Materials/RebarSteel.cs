@@ -13,7 +13,7 @@ namespace Materials.Materials
         private double e;            //[kN/m2]
         private double poissonRatio = 0.3;
         private double gModule;      //[kN/m2]
-        private double number;
+        private int number;
         private string name;
         private string type = "Rebar Steel";
 
@@ -104,7 +104,7 @@ namespace Materials.Materials
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {
@@ -113,7 +113,6 @@ namespace Materials.Materials
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN().Throw();
                 this.number = value;
             }
         }

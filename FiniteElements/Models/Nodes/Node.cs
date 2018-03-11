@@ -9,7 +9,7 @@ namespace FiniteElements.Models.Nodes
         private double xCoord;
         private double yCoord;
         private double zCoord;
-        private double number;
+        private int number;
         private List<INodalLoad> loads;
 
         private bool xSupport;
@@ -85,7 +85,7 @@ namespace FiniteElements.Models.Nodes
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {
@@ -94,7 +94,6 @@ namespace FiniteElements.Models.Nodes
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN();
                 this.number = value;
             }
         }

@@ -16,6 +16,6 @@
 
         double Mju { get; }
 
-        double Number { get; set; }
+        int Number { get; set; }
     }
 }

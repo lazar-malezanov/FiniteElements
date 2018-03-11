@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FiniteElements.Core.Contracts;
-using MathNet.Numerics.LinearAlgebra;
 
 namespace FiniteElements.Commands.Solvers
 {
@@ -15,8 +14,7 @@ namespace FiniteElements.Commands.Solvers
             {
                 for (int i = 0; i < this.dbctx.LoadCases.Count; i++)
                 {
-                    Matrix<double> temp = this.dbctx.GlobalStiffnessMatrix.Inverse();
-                    this.dbctx.ResultNodalDisplacementVectors.Add(i, temp * this.dbctx.GlobalLoadVectors[i]);
+                    this.dbctx.ResultNodalDisplacementVectors.Add(i, this.dbctx.GlobalStiffnessMatrixWithSupports.Inverse() * this.dbctx.GlobalLoadVectors[i]);
                     this.dbctx.ResultNodalReactionVectors.Add(i, this.dbctx.GlobalStiffnessMatrix * this.dbctx.ResultNodalDisplacementVectors[i] - this.dbctx.GlobalLoadVectors[i]);
                 }
             }

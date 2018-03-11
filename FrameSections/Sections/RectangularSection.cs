@@ -15,7 +15,7 @@ namespace FrameSections.Sections
         private double momentOfInertiaZ;
         private double torsionalConstantX;
         private double mju = 1.2;
-        private double number;
+        private int number;
 
         public RectangularSection(double height, double width)
         {
@@ -100,7 +100,7 @@ namespace FrameSections.Sections
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {
@@ -109,8 +109,7 @@ namespace FrameSections.Sections
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN().Throw();
-                Guard.WhenArgument(value, "number").IsLessThan(0.0).Throw();
+                Guard.WhenArgument(value, "number").IsLessThan(0).Throw();
                 this.number = value;
             }
         }

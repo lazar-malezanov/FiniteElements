@@ -3,6 +3,7 @@ using FiniteElements.Core.Contracts;
 using FiniteElements.Core.Factories;
 using FiniteElements.Models.Contracts;
 using FiniteElements.Models.Nodes;
+using FiniteElements.Models.ServiceClasses;
 using System;
 using System.Collections.Generic;
 
@@ -38,6 +39,7 @@ namespace FiniteElements.Commands.Creating
             Node secondNode = base.dbctx.Nodes[secondNodeId];
 
             IFrameElement frameElement = this.factory.CreateFrameElement(firstNode, secondNode);
+            frameElement.TransformationMatrix = FrameService.TransformationMatrix(frameElement);
 
             this.dbctx.FrameElements.Add(frameElement);
             frameElement.Number = base.dbctx.FrameElements.Count - 1;

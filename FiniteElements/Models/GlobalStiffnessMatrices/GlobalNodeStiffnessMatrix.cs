@@ -15,12 +15,12 @@ namespace FiniteElements.Models.GlobalStiffnessMatrices
 
             foreach (var node in this.dbctx.Springs)
             {
-                globalMatrix[6 * (int)node.Number + 0, 6 * (int)node.Number + 0] += node.XSpring;
-                globalMatrix[6 * (int)node.Number + 1, 6 * (int)node.Number + 1] += node.YSpring;
-                globalMatrix[6 * (int)node.Number + 2, 6 * (int)node.Number + 2] += node.ZSpring;
-                globalMatrix[6 * (int)node.Number + 3, 6 * (int)node.Number + 3] += node.RxSpring;
-                globalMatrix[6 * (int)node.Number + 4, 6 * (int)node.Number + 4] += node.RzSpring;
-                globalMatrix[6 * (int)node.Number + 5, 6 * (int)node.Number + 5] += node.RySpring;               
+                globalMatrix[6 * node.Number + 0, 6 * node.Number + 0] += node.XSpring;
+                globalMatrix[6 * node.Number + 1, 6 * node.Number + 1] += node.YSpring;
+                globalMatrix[6 * node.Number + 2, 6 * node.Number + 2] += node.ZSpring;
+                globalMatrix[6 * node.Number + 3, 6 * node.Number + 3] += node.RxSpring;
+                globalMatrix[6 * node.Number + 4, 6 * node.Number + 4] += node.RzSpring;
+                globalMatrix[6 * node.Number + 5, 6 * node.Number + 5] += node.RySpring;               
             }
 
             return globalMatrix;

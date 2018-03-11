@@ -4,6 +4,6 @@
     {
         string Name { get; set; }  
 
-        double Number { get; set; }
+        int Number { get; set; }
     }
 }

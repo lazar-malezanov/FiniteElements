@@ -15,7 +15,7 @@ namespace FiniteElements.Commands
             if (dbctx.FrameElements.Count > 0)
             {
                 GlobalStiffnessMatrix globalMatrix = factory.CreateGlobalNodeStiffnessMatrix(this.dbctx);
-                this.dbctx.GlobalStiffnessMatrices.Add(globalMatrix.Assemble());
+                this.dbctx.GlobalNodeStiffnessMatrix = globalMatrix.Assemble();
 
                 return $"Global node stiffness matrix has been assembled.";
             }

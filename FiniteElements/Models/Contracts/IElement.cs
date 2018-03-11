@@ -11,6 +11,6 @@ namespace FiniteElements.Models.Contracts
 
         List<IFrameLoad> Loads { get; }
 
-        double Number { get; set; }
+        int Number { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace FiniteElements.Adapters
         private double momentOfInertiaZ;
         private double torsionalConstantX;
         private string name;
-        private double number;
+        private int number;
         private string type;
 
         public FrameSectionAdapter(ISection sectionFromLibrary)
@@ -82,7 +82,7 @@ namespace FiniteElements.Adapters
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {

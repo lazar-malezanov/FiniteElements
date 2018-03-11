@@ -23,7 +23,7 @@ namespace Materials.Materials
         private double epsilonCu3;  //[%.]  - promils
         private double poissonRatio = 0.2;
         private double gModule;
-        private double number;
+        private int number;
         private string name;
         private string type = "Concrete";
 
@@ -204,7 +204,7 @@ namespace Materials.Materials
             }
         }
 
-        public double Number
+        public int Number
         {
             get
             {
@@ -213,8 +213,7 @@ namespace Materials.Materials
 
             set
             {
-                Guard.WhenArgument(value, "number").IsNaN().Throw();
-                Guard.WhenArgument(value, "number").IsLessThan(0.0).Throw();
+                Guard.WhenArgument(value, "number").IsLessThan(0).Throw();
                 this.number = value;
             }
         }

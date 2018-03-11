@@ -24,44 +24,48 @@ namespace FiniteElements.Commands
                 if (i == 0)
                 {
                     this.dbctx.GlobalStiffnessMatrix = this.dbctx.GlobalStiffnessMatrices[i];
+                    this.dbctx.GlobalStiffnessMatrixWithSupports = this.dbctx.GlobalStiffnessMatrices[i];
                 }
 
                 else
                 {
                     this.dbctx.GlobalStiffnessMatrix += this.dbctx.GlobalStiffnessMatrices[i];
+                    this.dbctx.GlobalStiffnessMatrixWithSupports += this.dbctx.GlobalStiffnessMatrices[i];
                 }
             }
+
+            this.dbctx.GlobalStiffnessMatrixWithSupports += this.dbctx.GlobalNodeStiffnessMatrix;
 
             foreach (var node in this.dbctx.Supports)
             {
                 if (node.XSupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 0, 6 * (int)node.Number + 0] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 0, 6 * node.Number + 0] = double.MaxValue;
                 }
 
                 if (node.YSupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 1, 6 * (int)node.Number + 1] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 1, 6 * node.Number + 1] = double.MaxValue;
                 }
 
                 if (node.ZSupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 2, 6 * (int)node.Number + 2] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 2, 6 * node.Number + 2] = double.MaxValue;
                 }
 
                 if (node.RxSupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 3, 6 * (int)node.Number + 3] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 3, 6 * node.Number + 3] = double.MaxValue;
                 }
 
                 if (node.RzSupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 4, 6 * (int)node.Number + 4] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 4, 6 * node.Number + 4] = double.MaxValue;
                 }
 
                 if (node.RySupport == true)
                 {
-                    this.dbctx.GlobalStiffnessMatrix[6 * (int)node.Number + 5, 6 * (int)node.Number + 5] = double.MaxValue;
+                    this.dbctx.GlobalStiffnessMatrixWithSupports[6 * node.Number + 5, 6 * node.Number + 5] = double.MaxValue;
                 }            
             }
 
