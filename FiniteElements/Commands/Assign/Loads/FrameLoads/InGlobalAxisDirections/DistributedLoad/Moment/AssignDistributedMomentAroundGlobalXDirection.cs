@@ -7,13 +7,13 @@ using MathNet.Numerics.LinearAlgebra;
 using System;
 using System.Collections.Generic;
 
-namespace FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.DistributedLoad
+namespace FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.DistributedLoad.Moment
 {
-    internal class AssignDistributedLoadGlobalXDirection : AssignCommand
+    internal class AssignDistributedMomentAroundGlobalXDirection : AssignCommand
     {
         private IFrameLoadFactory factory;
 
-        public AssignDistributedLoadGlobalXDirection(IDatabase dbctx, IFrameLoadFactory factory) : base(dbctx)
+        public AssignDistributedMomentAroundGlobalXDirection(IDatabase dbctx, IFrameLoadFactory factory) : base(dbctx)
         {
             Guard.WhenArgument(factory, "factory").IsNull().Throw();
 
@@ -40,15 +40,15 @@ namespace FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections
             }
             catch
             {
-                throw new ArgumentException("Failed to parse AssignDistributedLoadGlobalXDirection command parameters.");
+                throw new ArgumentException("Failed to parse AssignDistributedMomentAroundGlobalXDirection command parameters.");
             }
 
             IFrameElement frameElement = base.dbctx.FrameElements[elementId];
             ILoadCase loadCase = base.dbctx.LoadCases[loadCaseNumber];
-            double gCoefficientY = (frameElement.MaterialProp.EModule * frameElement.SectionProp.MomentOfInertiaZ * frameElement.SectionProp.Mju)
+            double gCoefficientY = (frameElement.MaterialProp.EModule * frameElement.SectionProp.MomentOfInertiaY * frameElement.SectionProp.Mju)
                 / (frameElement.SectionProp.Area * frameElement.MaterialProp.GModule);
 
-            double gCoefficientZ = (frameElement.MaterialProp.EModule * frameElement.SectionProp.MomentOfInertiaY * frameElement.SectionProp.Mju)
+            double gCoefficientZ = (frameElement.MaterialProp.EModule * frameElement.SectionProp.MomentOfInertiaZ * frameElement.SectionProp.Mju)
                 / (frameElement.SectionProp.Area * frameElement.MaterialProp.GModule);
 
             Vector<double> startPointEntryLoad = Vector<double>.Build.SparseOfArray(new double[] { loadAtStart, 0, 0 });
@@ -57,20 +57,20 @@ namespace FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections
             Vector<double> startPointLoadVector = FrameService.InclinedLoadVector(frameElement, startPointEntryLoad);
             Vector<double> endPointLoadVector = FrameService.InclinedLoadVector(frameElement, endPointEntryLoad);
 
-            IFrameLoad frameLoadLocalX = this.factory.CreateDistributedNormalLoad(loadCase, frameElement.ElementLength, 0.0,
+            IFrameLoad frameMomentAroundLocalX = this.factory.CreateDistributedTorsion(loadCase, frameElement.ElementLength, 0.0,
                 startPointLoadVector[0], endPointLoadVector[0], loadStartsAt, loadEndsAt);
 
-            IFrameLoad frameLoadLocalY = this.factory.CreateDistributedShearLoadXYPlane(loadCase, frameElement.ElementLength, gCoefficientY,
-                startPointLoadVector[2], endPointLoadVector[2], loadStartsAt, loadEndsAt);
-
-            IFrameLoad frameLoadLocalZ = this.factory.CreateDistributedShearLoadXZPlane(loadCase, frameElement.ElementLength, gCoefficientZ,
+            IFrameLoad frameMomentAroundLocalY = this.factory.CreateDistributedMomentXZPlane(loadCase, frameElement.ElementLength, gCoefficientY,
                 startPointLoadVector[1], endPointLoadVector[1], loadStartsAt, loadEndsAt);
 
-            FrameService.AddLoad(frameElement, frameLoadLocalX);
-            FrameService.AddLoad(frameElement, frameLoadLocalY);
-            FrameService.AddLoad(frameElement, frameLoadLocalZ);
+            IFrameLoad frameMomentAroundLocalZ = this.factory.CreateDistributedMomentXYPlane(loadCase, frameElement.ElementLength, gCoefficientZ,
+                startPointLoadVector[2], endPointLoadVector[2], loadStartsAt, loadEndsAt);
+            
+            FrameService.AddLoad(frameElement, frameMomentAroundLocalX);
+            FrameService.AddLoad(frameElement, frameMomentAroundLocalY);
+            FrameService.AddLoad(frameElement, frameMomentAroundLocalZ);
 
-            return $"Distributed frame load in global X direction with intensities {loadAtStart} and {loadAtEnd} and Load Case Numeber {loadCaseNumber} has been assigned to element with ID {frameElement.Number}.";
+            return $"Distributed frame moment around global X direction with intensities {loadAtStart} and {loadAtEnd} and Load Case Numeber {loadCaseNumber} has been assigned to element with ID {frameElement.Number}.";
         }
     }
 }

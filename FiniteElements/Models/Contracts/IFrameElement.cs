@@ -22,6 +22,8 @@ namespace FiniteElements.Models.Contracts
 
         Dictionary<int, Vector<double>> GeneratedLocalLoadVectors { get; set; }
 
+        Dictionary<int, Vector<double>> LocalInternalForceVectors { get; set; }
+
         bool TorsionReleaseNode1 { get; set; }
 
         bool MomentAroundYReleaseNode1 { get; set; }

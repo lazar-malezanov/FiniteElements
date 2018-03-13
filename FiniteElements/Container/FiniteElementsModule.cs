@@ -4,7 +4,9 @@ using FiniteElements.Commands.Assemble.AssembleLoadVectors;
 using FiniteElements.Commands.Assemble.AssembleStiffnessMatrices;
 using FiniteElements.Commands.Assign;
 using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.ConcentratedLoad;
+using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.ConcentratedLoad.Moment;
 using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.DistributedLoad;
+using FiniteElements.Commands.Assign.Loads.FrameLoads.InGlobalAxisDirections.DistributedLoad.Moment;
 using FiniteElements.Commands.Assign.Loads.NodalLoads;
 using FiniteElements.Commands.Assign.Releases;
 using FiniteElements.Commands.Assign.Springs;
@@ -84,7 +86,10 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignConcentratedLoadGlobalXDirection>().Named("assignconcentratedloadglobalxdirection");
             this.Bind<ICommand>().To<AssignConcentratedLoadGlobalYDirection>().Named("assignconcentratedloadglobalydirection");
             this.Bind<ICommand>().To<AssignConcentratedLoadGlobalZDirection>().Named("assignconcentratedloadglobalzdirection");
-
+            this.Bind<ICommand>().To<AssignConcentratedMomentAroundGlobalXDirection>().Named("assignconcentratedmomentaroundglobalxdirection");
+            this.Bind<ICommand>().To<AssignConcentratedMomentAroundGlobalYDirection>().Named("assignconcentratedmomentaroundglobalydirection");
+            this.Bind<ICommand>().To<AssignConcentratedMomentAroundGlobalZDirection>().Named("assignconcentratedmomentaroundglobalzdirection");
+            
             ////Distributed Loads
             //////Local
             this.Bind<ICommand>().To<AssignDistributedMomentXYPlaneToFrame>().Named("assigndistributedmomentxyplanetoframe");
@@ -98,6 +103,9 @@ namespace FiniteElements.Container
             this.Bind<ICommand>().To<AssignDistributedLoadGlobalXDirection>().Named("assigndistributedloadglobalxdirection");
             this.Bind<ICommand>().To<AssignDistributedLoadGlobalYDirection>().Named("assigndistributedloadglobalydirection");
             this.Bind<ICommand>().To<AssignDistributedLoadGlobalZDirection>().Named("assigndistributedloadglobalzdirection");
+            this.Bind<ICommand>().To<AssignDistributedMomentAroundGlobalXDirection>().Named("assigndistributedmomentaroundglobalxdirection");
+            this.Bind<ICommand>().To<AssignDistributedMomentAroundGlobalYDirection>().Named("assigndistributedmomentaroundglobalydirection");
+            this.Bind<ICommand>().To<AssignDistributedMomentAroundGlobalZDirection>().Named("assigndistributedmomentaroundglobalzdirection");
 
             ////Moment Releases
             this.Bind<ICommand>().To<AssignMomentAroundYReleaseNode1>().Named("assignmomentaroundyreleasenode1");
@@ -173,6 +181,7 @@ namespace FiniteElements.Container
             //Results
             this.Bind<ICommand>().To<ListDisplacements>().Named("listdisplacements");
             this.Bind<ICommand>().To<ListReactions>().Named("listreactions");
+            this.Bind<ICommand>().To<ListFrameElementInternalForces>().Named("listframeelementinternalforces");
         }
     }
 }

@@ -14,7 +14,6 @@ namespace FiniteElements.Commands.Listing.Results
 
             foreach (var displacement in this.dbctx.ResultNodalDisplacementVectors)
             {
-                
                 for (int i = 0; i < displacement.Value.Count; i++)
                 {
                     if (i % 6 == 0)

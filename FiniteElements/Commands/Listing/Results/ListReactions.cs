@@ -1,9 +1,6 @@
 ﻿using FiniteElements.Core.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FiniteElements.Commands.Listing.Results
 {
@@ -19,9 +16,12 @@ namespace FiniteElements.Commands.Listing.Results
             {
                 for (int i = 0; i < reaction.Value.Count; i++)
                 {
-                    result.AppendLine($"{i}: {reaction.Value[i]:f5}");
+                    if (i % 6 == 0)
+                    {
+                        result.AppendLine($"Node {i / 6}:");
+                    }
+                    result.AppendLine($"***{i}: {reaction.Value[i]:f5}");
                 }
-
             }
 
             return result.ToString();

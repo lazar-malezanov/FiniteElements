@@ -551,25 +551,33 @@ namespace FiniteElements.Models.ServiceClasses
             return element.TransformationMatrix.Transpose() * element.LocalMatrix * element.TransformationMatrix;
         }
 
-        public static Vector<double> InternalForces(IFrameElement element, Vector<double> globalDisplacementVector, int loadCaseNumber)
+        public static void InternalForces(IFrameElement element, Vector<double> globalDisplacementVector, int loadCaseNumber)
         {
             Vector<double> globalElementDisplacements = Vector<double>.Build.Sparse(12, 0.0);
 
-            globalElementDisplacements[0] += globalDisplacementVector[element.Node1.Number + 0];
-            globalElementDisplacements[1] += globalDisplacementVector[element.Node1.Number + 1];
-            globalElementDisplacements[2] += globalDisplacementVector[element.Node1.Number + 2];
-            globalElementDisplacements[3] += globalDisplacementVector[element.Node1.Number + 3];
-            globalElementDisplacements[4] += globalDisplacementVector[element.Node1.Number + 4];
-            globalElementDisplacements[5] += globalDisplacementVector[element.Node1.Number + 5];
+            globalElementDisplacements[0] += globalDisplacementVector[6 * element.Node1.Number + 0];
+            globalElementDisplacements[1] += globalDisplacementVector[6 * element.Node1.Number + 1];
+            globalElementDisplacements[2] += globalDisplacementVector[6 * element.Node1.Number + 2];
+            globalElementDisplacements[3] += globalDisplacementVector[6 * element.Node1.Number + 3];
+            globalElementDisplacements[4] += globalDisplacementVector[6 * element.Node1.Number + 4];
+            globalElementDisplacements[5] += globalDisplacementVector[6 * element.Node1.Number + 5];
 
-            globalElementDisplacements[6] += globalDisplacementVector[element.Node2.Number + 0];
-            globalElementDisplacements[7] += globalDisplacementVector[element.Node2.Number + 1];
-            globalElementDisplacements[8] += globalDisplacementVector[element.Node2.Number + 2];
-            globalElementDisplacements[9] += globalDisplacementVector[element.Node2.Number + 3];
-            globalElementDisplacements[10] += globalDisplacementVector[element.Node2.Number + 4];
-            globalElementDisplacements[11] += globalDisplacementVector[element.Node2.Number + 5];
+            globalElementDisplacements[6] += globalDisplacementVector[6 * element.Node2.Number + 0];
+            globalElementDisplacements[7] += globalDisplacementVector[6 * element.Node2.Number + 1];
+            globalElementDisplacements[8] += globalDisplacementVector[6 * element.Node2.Number + 2];
+            globalElementDisplacements[9] += globalDisplacementVector[6 * element.Node2.Number + 3];
+            globalElementDisplacements[10] += globalDisplacementVector[6 * element.Node2.Number + 4];
+            globalElementDisplacements[11] += globalDisplacementVector[6 * element.Node2.Number + 5];
 
-            return element.TransformationMatrix * globalElementDisplacements - element.GeneratedLocalLoadVectors[loadCaseNumber];
+            if (!element.LocalInternalForceVectors.ContainsKey(loadCaseNumber))
+            {
+                element.LocalInternalForceVectors.Add(loadCaseNumber, ((element.LocalMatrix * (element.TransformationMatrix * globalElementDisplacements))) - element.GeneratedLocalLoadVectors[loadCaseNumber]);
+            }
+
+            else
+            {
+                element.LocalInternalForceVectors[loadCaseNumber] = (element.LocalMatrix * (element.TransformationMatrix * globalElementDisplacements)) - element.GeneratedLocalLoadVectors[loadCaseNumber];
+            } 
         }
 
         public static Matrix<double> AddWinklerConstant(IFrameElement element, double winklerConstant)

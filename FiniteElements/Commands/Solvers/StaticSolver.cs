@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FiniteElements.Core.Contracts;
+using FiniteElements.Models.ServiceClasses;
 
 namespace FiniteElements.Commands.Solvers
 {
@@ -16,7 +17,14 @@ namespace FiniteElements.Commands.Solvers
                 {
                     this.dbctx.ResultNodalDisplacementVectors.Add(i, this.dbctx.GlobalStiffnessMatrixWithSupports.Inverse() * this.dbctx.GlobalLoadVectors[i]);
                     this.dbctx.ResultNodalReactionVectors.Add(i, this.dbctx.GlobalStiffnessMatrix * this.dbctx.ResultNodalDisplacementVectors[i] - this.dbctx.GlobalLoadVectors[i]);
+
+                    for (int j = 0; j < this.dbctx.FrameElements.Count; j++)
+                    {
+                        FrameService.InternalForces(this.dbctx.FrameElements[j], this.dbctx.ResultNodalDisplacementVectors[i], i);
+                    }
                 }
+
+                
             }
             catch (Exception)
             {

@@ -15,6 +15,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
         private IFrameSection sectionProp;
         private List<IFrameLoad> loads;
         private Dictionary<int, Vector<double>> generatedLocalLoadVectors;
+        private Dictionary<int, Vector<double>> localInternalForceVectors;
         private Matrix<double> localMatrix;
         private Matrix<double> transformationMatrix;
         private Matrix<double> globalMatrix;
@@ -47,6 +48,7 @@ namespace FiniteElements.Models.FrameModels.FrameElements
 
             this.loads = new List<IFrameLoad>();
             this.generatedLocalLoadVectors = new Dictionary<int, Vector<double>>();
+            this.localInternalForceVectors = new Dictionary<int, Vector<double>>();
 
             double X1 = node1.XCoord;
             double X2 = node2.XCoord;
@@ -105,6 +107,19 @@ namespace FiniteElements.Models.FrameModels.FrameElements
             set
             {
                 this.generatedLocalLoadVectors = value;
+            }
+        }
+
+        public Dictionary<int, Vector<double>> LocalInternalForceVectors
+        {
+            get
+            {
+                return this.localInternalForceVectors;
+            }
+
+            set
+            {
+                this.localInternalForceVectors = value;
             }
         }
 
